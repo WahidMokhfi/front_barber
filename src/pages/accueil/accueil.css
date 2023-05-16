@@ -1,0 +1,33 @@
+.accueil{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-image: url("http://localhost:3000/img/banner1.JPG");
+    background-size: cover;
+    background-position: center;
+}
+
+.accueil .content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.accueil .content{
+    max-width: 60rem;
+}
+
+.accueil .content span{
+    font-size: 3rem;
+    letter-spacing: .5rem;
+    padding-bottom: .5rem;
+    color: var(--white);
+    text-transform: uppercase;
+ }
+
+.accueil .content h3 {
+    color: var(--white);
+    font-size: 8rem; 
+    line-height: 8rem; 
+    font-weight: 900;
+}
+
