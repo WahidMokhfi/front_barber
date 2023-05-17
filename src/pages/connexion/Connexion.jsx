@@ -5,7 +5,7 @@ import "./connexion.css";
 function Connexion() {
   const [isLogin, setIsLogin] = useState(true);
   const [successMessage, setSuccessMessage] = useState("");
-  const navigate = useNavigate(); // Ajout de l'importation et de la constante navigate
+  const navigate = useNavigate();
 
   const handleSwitchForm = () => {
     setIsLogin(!isLogin);
@@ -16,7 +16,7 @@ function Connexion() {
     const username = event.target.username.value;
     const password = event.target.password.value;
 
-    fetch("http://localhost:3000/api/users/login", {
+    fetch("http://localhost:3005/api/user/connexion", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,7 @@ function Connexion() {
         const jwt = data.token;
         localStorage.setItem("jwt", jwt);
         setSuccessMessage("Connexion réussie !");
-        navigate("/avis"); // Utilisation de navigate pour la navigation
+        navigate("/avis");
       })
       .catch((error) => {
         console.error("Erreur lors de la connexion :", error);
@@ -68,6 +68,7 @@ function Connexion() {
 }
 
 export default Connexion;
+
 
 
 
