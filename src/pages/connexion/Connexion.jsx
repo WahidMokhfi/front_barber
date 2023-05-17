@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./connexion.css";
 
-function Connexion() {
+function Login() {
   const [isLogin, setIsLogin] = useState(true);
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
@@ -16,7 +16,9 @@ function Connexion() {
     const username = event.target.username.value;
     const password = event.target.password.value;
 
-    fetch("http://localhost:3005/api/user/connexion", {
+    const url = isLogin ? "http://localhost:3005/api/user/login" : "http://localhost:3005/api/user/register";
+
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,13 +45,13 @@ function Connexion() {
       <form className="form-custom" onSubmit={handleSubmit}>
         <h2>{isLogin ? "Connexion" : "Inscription"}</h2>
         <label htmlFor="username">Username :</label>
-        <input type="text" id="username" required />
+        <input type="text" id="username" required autoComplete="username" />
         <label htmlFor="password">Password :</label>
-        <input type="password" id="password" required />
+        <input type="password" id="password" required autoComplete="current-password" />
         {!isLogin && (
           <>
             <label htmlFor="confirm-password">Confirm Password :</label>
-            <input type="password" id="confirm-password" required />
+            <input type="password" id="confirm-password" required autoComplete="new-password" />
           </>
         )}
         <button type="submit">{isLogin ? "Se connecter" : "S'inscrire"}</button>
@@ -67,7 +69,10 @@ function Connexion() {
   );
 }
 
-export default Connexion;
+export default Login;
+
+
+
 
 
 
