@@ -20,16 +20,17 @@ return (
     </Link>
 
     <nav className={`navbar ${navbarActive ? "active" : ""}`}>
-      <div id="close-navbar" className="fas fa-times" onClick={handleCloseClick}></div>
-      <Link className="link-custom" to="/" aria-current="page">accueil</Link>
-      <Link className="link-custom" to="/apropos" aria-current="page">apropos</Link>
-      <Link className="link-custom" to="/serv" aria-current="page">services</Link>
-      <Link className="link-custom" to="/avis" aria-current="page">avis</Link>
-      <Link className="link-custom" to="/contact" aria-current="page">contact</Link>
-      <Link className="link-custom" to="/connexion" aria-current="page">connexion</Link>
+  <div id="close-navbar" className="fas fa-times" onClick={handleCloseClick}></div>
+  <div className="navbar-container">
+    <Link className="link-custom" to="/" aria-current="page">accueil</Link>
+    <Link className="link-custom" to="/apropos" aria-current="page">apropos</Link>
+    <Link className="link-custom" to="/serv" aria-current="page">services</Link>
+    <Link className="link-custom" to="/avis" aria-current="page">avis</Link>
+    <Link className="link-custom" to="/contact" aria-current="page">contact</Link>
+    <Link className="link-custom" to="/connexion" aria-current="page">connexion</Link>
+  </div>
+</nav>
 
-
-    </nav>
 
     <div id="menu-burger" className={`fas fa-bars ${navbarActive ? "active" : ""}`} onClick={handleMenuClick}></div>
   </header>
