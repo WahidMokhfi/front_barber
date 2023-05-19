@@ -33,7 +33,7 @@ header .navbar {
   justify-content: space-between;
 }
 
-header .navbar a {
+header .navbar .link-custom {
   margin-left: 2rem;
   margin-right: 2rem;
   font-size: 2rem;
@@ -68,7 +68,7 @@ header .navbar #close-navbar {
   }
   
 
-header .navbar a:hover {
+header .navbar .link-custom:hover {
   color: grey;
 }
 
@@ -77,7 +77,7 @@ header .navbar a:hover {
   html {
     font-size: 55%;
   }
-  header .navbar a {
+  header .navbar .link-custom{
     font-size: 1.7rem;
   }
   section {
@@ -109,7 +109,7 @@ header .navbar a:hover {
   header .navbar.active {
     right: 0;
   }
-  header .navbar a {
+  header .navbar .link-custom {
     display: block;
     margin: 1rem 0;
     text-align: center;

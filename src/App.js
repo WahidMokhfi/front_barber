@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Accueil from "./pages/accueil/Accueil";
 import Apropos from "./pages/apropos/Apropos";
 import Services from "./pages/serv/Services";
 import Avis from "./pages/avis/Avis";
@@ -14,6 +13,7 @@ import ServicesList from "./pages/admin/servicesManagement/ServicesList";
 import CreateService from "./pages/admin/servicesManagement/CreateService";
 import ServiceDetails from "./pages/admin/servicesManagement/ServiceDetail";
 import UpdateService from "./pages/admin/servicesManagement/UpdateService";
+import Accueil from "./pages/accueil/Accueil";
 
 function App() {
 return (
@@ -24,8 +24,8 @@ return (
       <Route path="/" element={<Home />} />
 
       {/* Routes pour les services */}
-      <Route path="/services" element={<ServicesList />} />
-      <Route path="/services/:id" element={<ServiceDetails />} />
+      <Route path="/servicesManagement" element={<ServicesList />} />
+      <Route path="/servicesManagement/:id" element={<ServiceDetails />} />
 
       {/* Routes pour l'administration */}
       <Route path="/admin/*" element={<AdminRoutes />} />

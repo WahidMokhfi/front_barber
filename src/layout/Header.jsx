@@ -21,12 +21,14 @@ return (
 
     <nav className={`navbar ${navbarActive ? "active" : ""}`}>
       <div id="close-navbar" className="fas fa-times" onClick={handleCloseClick}></div>
-      <a href="#accueil">Accueil</a>
-      <a href="#apropos">A propos</a>
-      <a href="#services">Services</a>
-      <a href="#avis">Avis</a>
-      <a href="#contact">Contact</a>
-      <Link to="/connexion" aria-current="page">Connexion</Link>
+      <Link className="link-custom" to="/" aria-current="page">accueil</Link>
+      <Link className="link-custom" to="/apropos" aria-current="page">apropos</Link>
+      <Link className="link-custom" to="/serv" aria-current="page">services</Link>
+      <Link className="link-custom" to="/avis" aria-current="page">avis</Link>
+      <Link className="link-custom" to="/contact" aria-current="page">contact</Link>
+      <Link className="link-custom" to="/connexion" aria-current="page">connexion</Link>
+
+
     </nav>
 
     <div id="menu-burger" className={`fas fa-bars ${navbarActive ? "active" : ""}`} onClick={handleMenuClick}></div>

@@ -1,8 +1,12 @@
 import React from 'react';
 import './apropos.css';
+import Header from '../../layout/Header';
+
 
 function Apropos() {
   return (
+    <>
+    <Header />
     <section className="apropos" id="apropos">
       <h1 className="heading">À propos</h1>
       <div className="row">
@@ -37,6 +41,7 @@ function Apropos() {
         </div>
       </div>
     </section>
+  </>
   );
 }
 

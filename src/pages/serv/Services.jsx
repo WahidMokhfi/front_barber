@@ -1,9 +1,11 @@
 import React from 'react';
 import '../serv/services.css';
+import Header from '../../layout/Header';
 
 function Services() {
   return (
     <>
+      <Header />
       <section className="services" id="services">
         <h1 className="heading">Nos services</h1>
 

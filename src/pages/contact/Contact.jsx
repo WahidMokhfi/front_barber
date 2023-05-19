@@ -1,8 +1,11 @@
 import React from 'react'
 import '../contact/contact.css'
+import Header from '../../layout/Header';
 
 function Contact() {
   return (
+    <>
+    <Header />
 <section className="contact" id="contact">
     <h1 className="heading"> Nous Contacter</h1>
     <div className="row">
@@ -27,6 +30,7 @@ function Contact() {
         </div>
     </div>
 </section>
+</>
   )
 }
 
