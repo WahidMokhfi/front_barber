@@ -1,57 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../../layout/Header";
+import Header from "../../../layout/Header";
 
 const UpdateService = () => {
 const [service, setService] = useState(null);
 const { id } = useParams();
 
 useEffect(() => {
-  const fetchService = async () => {
-    try {
-      const response = await fetch(`http://localhost:3005/api/services/${id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setService(data.data);
-      } else {
-        throw new Error(`Erreur lors de la récupération du service : ${response.status}`);
-      }
-    } catch (error) {
+  fetch(`http://localhost:3005/api/services/${id}`)
+    .then((response) => response.json())
+    .then((data) => {
+      setService(data.data);
+    })
+    .catch((error) => {
       console.error("Erreur lors de la récupération du service :", error);
-    }
-  };
-
-  fetchService();
+    });
 }, [id]);
 
-const handleSubmit = async (event) => {
+const handleSubmit = (event) => {
   event.preventDefault();
 
   const name = event.target.name.value;
   const description = event.target.description.value;
   const price = event.target.price.value;
 
-  try {
-    const response = await fetch(`http://localhost:3005/api/services/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: name,
-        description: description,
-        price: price,
-      }),
+  fetch(`http://localhost:3005/api/services/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: name,
+      description: description,
+      price: price,
+    }),
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        console.log("Service modifié");
+      } else {
+        console.log("Erreur");
+      }
+    })
+    .catch((error) => {
+      console.error("Erreur lors de la mise à jour du service :", error);
     });
-
-    if (response.ok) {
-      console.log("Service modifié");
-    } else {
-      throw new Error(`Erreur lors de la mise à jour du service : ${response.status}`);
-    }
-  } catch (error) {
-    console.error("Erreur lors de la mise à jour du service :", error);
-  }
 };
 
 return (

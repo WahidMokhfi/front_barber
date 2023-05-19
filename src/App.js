@@ -6,13 +6,14 @@ import Apropos from "./pages/apropos/Apropos";
 import Services from "./pages/serv/Services";
 import Avis from "./pages/avis/Avis";
 import Contact from "./pages/contact/Contact";
-import Connexion from "./pages/connexion/Connexion";
+import Connexion from "./pages/admin/connexion/Connexion";
 import "./App.css";
 
-import ServicesList from "./pages/admin/ServicesList";
-import CreateService from "./pages/admin/CreateService";
-import ServiceDetails from "./pages/admin/ServiceDetail";
-import UpdateService from "./pages/admin/UpdateService";
+
+import ServicesList from "./pages/admin/servicesManagement/ServicesList";
+import CreateService from "./pages/admin/servicesManagement/CreateService";
+import ServiceDetails from "./pages/admin/servicesManagement/ServiceDetail";
+import UpdateService from "./pages/admin/servicesManagement/UpdateService";
 
 function App() {
 return (
