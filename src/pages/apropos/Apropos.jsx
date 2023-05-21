@@ -21,7 +21,7 @@ function Apropos() {
             ultricies malesuada leo vel aliquet. Curabitur rutrum porta dui eget mollis. Nullam lacinia dictum auctor.
           </p>
           <p>
-            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius
+            aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius
             natoque penatibus et magnis dis parturient montes.
           </p>
           <div className="icons-container">
