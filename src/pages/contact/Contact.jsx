@@ -7,7 +7,7 @@ function Contact() {
     <>
     <Header />
 <section className="contact" id="contact">
-    <h1 className="heading"> Nous Contacter</h1>
+    <h2 className="heading"> Nous Contacter</h2>
     <div className="row">
         <form action="">
             <h3>Lorem ipsum dolor sit amet.</h3>

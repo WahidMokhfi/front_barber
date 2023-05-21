@@ -6,7 +6,7 @@ function Accueil() {
     <section className="accueil" id="accueil">
       <div className="content">
           <span>Bienvenue</span>
-          <h3>Lorem, ipsum. Lorem, ipsum dolor.</h3>
+          <h1>À Barber Bègles</h1>
       </div>
     </section>
   )

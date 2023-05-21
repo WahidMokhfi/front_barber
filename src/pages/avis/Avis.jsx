@@ -14,7 +14,7 @@ function Avis() {
     <>
       <Header />
       <section className="avis" id="avis">
-        <h1 className="heading">Avis</h1>
+        <h2 className="heading">Avis</h2>
         <div className="box-container">
           <div className="box">
             <img src="img/icon-avis.png" alt="" className="quote" />

@@ -7,7 +7,7 @@ function Services() {
     <>
       <Header />
       <section className="services" id="services">
-        <h1 className="heading">Nos services</h1>
+        <h2 className="heading">Nos services</h2>
 
         <div className="box-container">
           <div className="box">

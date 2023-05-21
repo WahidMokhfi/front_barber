@@ -9,14 +9,14 @@ function Home() {
       <section className="accueil" id="accueil">
       <div className="content">
           <span>Bienvenue</span>
-          <h3>Lorem, ipsum. Lorem, ipsum dolor.</h3>
+          <h1>Au barberShop du Peuple</h1>
       </div>
     </section>
     <section className="apropos" id="apropos">
-      <h1 className="heading">À propos</h1>
+      <h2 className="heading">À propos</h2>
       <div className="row">
         <div className="image">
-          <img src="img/banner2.jpg" alt="" />
+          <img src="img/banner2.jpg" alt="outils de barber" />
         </div>
         <div className="content">
           <h3 className="title">Lorem ipsum dolor sit amet.</h3>
@@ -31,15 +31,15 @@ function Home() {
           </p>
           <div className="icons-container">
             <div className="icons">
-              <img src="img/icon1.png" alt="" />
+              <img src="img/icon1.png" alt="icon visage Homme" />
               <h3>Beau-gosse</h3>
             </div>
             <div className="icons">
-              <img src="img/icon2.png" alt="" />
+              <img src="img/icon2.png" alt="icon barbe" />
               <h3>Belle-barbe</h3>
             </div>
             <div className="icons">
-              <img src="img/icon3.png" alt="" />
+              <img src="img/icon3.png" alt="icon coupe de cheveux" />
               <h3>Belle mèche</h3>
             </div>
           </div>
@@ -47,32 +47,32 @@ function Home() {
       </div>
     </section>
       <section className="services" id="services">
-        <h1 className="heading">Nos services</h1>
+        <h2 className="heading">Nos services</h2>
 
         <div className="box-container">
           <div className="box">
-            <img src="img/serv1.jpg" alt="" />
+            <img src="img/serv1.jpg" alt="coupe de cheveux au rasoir" />
             <div className="content">
               <h3>Coupe</h3>
             </div>
           </div>
 
           <div className="box">
-            <img src="img/serv2.jpg" alt="" />
+            <img src="img/serv2.jpg" alt="taille de barbe à la tondeuse" />
             <div className="content">
               <h3>Barbe</h3>
             </div>
           </div>
 
           <div className="box">
-            <img src="img/serv3.jpg" alt="" />
+            <img src="img/serv3.jpg" alt="coloration couleur blanc" />
             <div className="content">
               <h3>Coloration</h3>
             </div>
           </div>
 
           <div className="box">
-            <img src="img/serv4.jpg" alt="" />
+            <img src="img/serv4.jpg" alt="soin vapeur du visage" />
             <div className="content">
               <h3>Soin du visage</h3>
             </div>
@@ -158,12 +158,12 @@ function Home() {
         </div>
       </section>
       <section className="avis" id="avis">
-        <h1 class="heading">Avis</h1>
+        <h2 class="heading">Avis</h2>
         <div className="box-container">
             <div className="box">
-                <img src="img/icon-avis.png" alt="" className="quote"/>
+                <img src="img/icon-avis.png" alt="icon avis" className="quote"/>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero nemo fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-                <img src="img/testimonial-1.jpg" className="user" alt="" />
+                <img src="img/testimonial-1.jpg" className="user" alt="John Doe" />
                 <h3>John Doe</h3>
                 <div className="stars">
                     <i className="fas fa-star"></i>
@@ -174,9 +174,9 @@ function Home() {
                 </div>
             </div>
             <div className="box">
-                <img src="img/icon-avis.png" alt="" className="quote" />
+                <img src="img/icon-avis.png" alt="icon avis" className="quote" />
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero nemo fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-                <img src="img/testimonial-2.jpg" className="user" alt="" />
+                <img src="img/testimonial-2.jpg" className="user" alt="John Doe" />
                 <h3>John Doe</h3>
                 <div className="stars">
                     <i className="fas fa-star"></i>
@@ -187,9 +187,9 @@ function Home() {
                 </div>
             </div>
             <div className="box">
-                <img src="img/icon-avis.png" alt="" className="quote" /> 
+                <img src="img/icon-avis.png" alt="icon avis" className="quote" /> 
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero nemo fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-                <img src="img/review-1.png" className="user" alt="" />
+                <img src="img/review-1.png" className="user" alt="John Doe" />
                 <h3>John Doe</h3>
                 <div className="stars">
                     <i className="fas fa-star"></i>
@@ -205,7 +205,7 @@ function Home() {
         </div>
     </section>
     <section className="contact" id="contact">
-    <h1 className="heading"> Nous Contacter</h1>
+    <h2 className="heading"> Nous Contacter</h2>
     <div className="row">
         <form action="">
             <h3>Lorem ipsum dolor sit amet.</h3>
@@ -224,7 +224,7 @@ function Home() {
             <input type="submit" value="Envoyer" className="btn" />
         </form>
         <div className="image">
-            <img src="img/IMG_BB3.PNG" alt="" />
+            <img src="img/IMG_BB3.PNG" alt="rasoir coupe chou" />
         </div>
     </div>
 </section>

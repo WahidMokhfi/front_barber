@@ -8,7 +8,7 @@ function Apropos() {
     <>
     <Header />
     <section className="apropos" id="apropos">
-      <h1 className="heading">À propos</h1>
+      <h2 className="heading">À propos</h2>
       <div className="row">
         <div className="image">
           <img src="img/banner2.jpg" alt="" />

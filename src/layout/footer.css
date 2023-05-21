@@ -1,62 +1,72 @@
-.footer {
-  text-align: center;
-}
-
 .footer .box-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
   gap: 2rem;
 }
 
-.footer .box-container .box h3 {
+.footer .box {
+  text-align: center;
+}
+
+.footer .box h3 {
   font-size: 2.2rem;
   text-transform: capitalize;
   color: var(--primary-color);
   padding: 1rem 0;
 }
 
-.footer .box-container .box p {
+.footer .box p {
   font-size: 1.5rem;
   line-height: 2;
   color: var(--black);
   padding: 1rem 0;
 }
 
-.footer .box-container .box .share {
+.footer .box .share {
   margin-top: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
-.footer .box-container .box .share a {
+.footer .box .share a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 4.5rem;
   width: 4.5rem;
   line-height: 4.5rem;
   border-radius: 50%;
-  font-size: 1.7rem;
+  font-size: 2.5rem;
   background-color: var(--primary-color);
   color: var(--white);
   margin-right: 0.3rem;
   text-align: center;
+  text-decoration: none;
 }
 
-.footer .box-container .box .share a:hover {
+.footer .box .share a:hover {
+  color: var(--white);
+  text-decoration: none;
   background-color: var(--black);
 }
 
-.footer .box-container .box .link {
+.footer .box .link {
   font-size: 1.7rem;
   line-height: 2;
   color: var(--primary-color);
   padding: 0.5rem 0;
   display: block;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-.footer .box-container .box .link:hover {
+.footer .box .link:hover {
   color: var(--black);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-.footer .box-container .box .email {
+.footer .box .email {
   width: 100%;
   padding: 1.2rem 1.4rem;
   font-size: 1.6rem;
@@ -65,7 +75,10 @@
 }
 
 .footer .credit {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
   margin-top: 3rem;
   padding-top: 3rem;
   font-size: 2rem;
@@ -76,5 +89,181 @@
 
 .footer .credit span {
   color: var(--black);
+  margin-right: 1rem;
 }
+
+.footer .credit .rights {
+  margin-right: 1rem;
+}
+
+.footer .credit .cgv-cgu,
+.footer .credit .data {
+  margin-right: 1rem;
+}
+
+.footer .credit a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+@media (max-width: 991px) {
+  .footer .box-container {
+    justify-content: center;
+  }
+
+  .footer .box {
+    flex-basis: 45%;
+    max-width: 18rem;
+    margin: 1rem;
+  }
+
+  .footer .box h3 {
+    font-size: 2rem;
+    padding: 0.8rem 0;
+  }
+
+  .footer .box p {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    padding: 0.8rem 0;
+  }
+
+  .footer .box .share {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer .box .share a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    width: 4rem;
+    line-height: 4rem;
+    font-size: 2rem;
+    margin-right: 0.2rem;
+  }
+  
+
+  .footer .box .link {
+    font-size: 1.3rem;
+    line-height: 1.6rem;
+    padding: 0.4rem 0;
+  }
+
+  .footer .box .email {
+    padding: 1rem 1.2rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .footer .credit {
+    font-size: 1.8rem;
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer .box {
+    flex-basis: 90%;
+    max-width: 16rem;
+    margin: 1rem;
+  }
+
+  .footer .box h3 {
+    font-size: 1.8rem;
+    padding: 0.6rem 0;
+  }
+
+  .footer .box p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    padding: 0.6rem 0;
+  }
+
+  .footer .box .share a {
+    height: 3.5rem;
+    width: 3.5rem;
+    line-height: 3.5rem;
+    font-size: 1.8rem;
+    margin-right: 0.2rem;
+  }
+
+  .footer .box .link {
+    font-size: 1.3rem;
+    line-height: 1.6rem;
+    padding: 0.3rem 0;
+  }
+
+  .footer .box .email {
+    padding: 0.9rem 1.1rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .footer .credit {
+    font-size: 1.6rem;
+    padding-top: 1.6rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .footer .box {
+    flex-basis: 90%;
+    max-width: 12rem;
+    margin: 1rem;
+  }
+
+  .footer .box h3 {
+    font-size: 1.6rem;
+    padding: 0.4rem 0;
+  }
+
+  .footer .box p {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    padding: 0.4rem 0;
+  }
+
+  .footer .box .share a {
+    height: 3rem;
+    width: 3rem;
+    line-height: 3rem;
+    font-size: 1.4rem;
+    margin-right: 0.1rem;
+  }
+
+  .footer .box .link {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    padding: 0.2rem 0;
+  }
+
+  .footer .box .email {
+    padding: 0.7rem 0.9rem;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .footer .credit {
+    font-size: 1.4rem;
+    padding-top: 1.4rem;
+  }
+}
+
+
+
+/* Mentions Légales     Créé Par WahidM    | Tous Droits Réservés    CGV/CGU    Données Personnelles */
+
+
+
+
+
+
+
+
+
+
 

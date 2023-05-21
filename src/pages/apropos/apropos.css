@@ -1,9 +1,32 @@
-
-.apropos{
-    background-image:url("http://localhost:3000/img/apropos-left.png");
-    background-repeat:no-repeat; 
-    background-position:left bottom;
+.apropos {
+    background-image: url("http://localhost:3000/img/apropos-left.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
 }
+
+@media (max-width: 991px) {
+    .apropos {
+        background-size: cover;
+        background-image: url("http://localhost:3000/img/apropos-left.png");
+    }
+}
+
+@media (max-width: 768px) {
+    .apropos {
+        background-size: cover;
+        background-image: url("http://localhost:3000/img/apropos-left.png");
+    }
+}
+
+@media (max-width: 450px) {
+    .apropos {
+        background-size: cover;
+        background-image: url("http://localhost:3000/img/apropos-left.png");
+    }
+}
+
+
+
 
 .apropos .row{
     display: flex;

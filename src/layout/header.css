@@ -2,11 +2,10 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
 /* Variables */
-/* Variables */
 :root {
-    --main-color: #000; /* changement de la couleur principale en noir */
-    --box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-  }
+  --main-color: #000;
+  --box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
 
 /* Header */
 header {
@@ -23,15 +22,7 @@ header {
   right: 0;
   background: var(--main-color);
   z-index: 1000;
-  margin-left: 2rem;
-  margin-right: 2rem;
 }
-
-header .navbar-container {
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
-
 
 header .navbar {
   display: flex;
@@ -47,7 +38,6 @@ header .navbar .link-custom {
   text-transform: capitalize;
   padding: 0.5rem 1rem;
 }
-
 
 header .logo {
   margin-left: 10px;
@@ -65,37 +55,25 @@ header .logo {
 }
 
 header .navbar #close-navbar {
-    position: absolute;
-    top: 1.5rem;
-    right: 2rem;
-    font-size: 4rem;
-    cursor: pointer;
-    color: white;
-    display: none;
-  }
-  
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 4rem;
+  cursor: pointer;
+  color: white;
+  display: none;
+}
+
 header .navbar .link-custom:hover {
   color: grey;
 }
 
 /* Responsive */
-@media (max-width: 991px) {
-  html {
-    font-size: 55%;
-  }
-  header .navbar .link-custom {
-    font-size: 1.7rem;
-  }
-  section {
-    padding: 3rem 2rem;
-  }
-}
-
 @media (max-width: 768px) {
   #menu-burger {
     display: inline-block;
     font-size: 4rem;
-    margin-left: 2rem; /* Décalage du bouton burger */
+    margin-right: 2rem; /* Décalage du menu burger vers la droite */
   }
   #menu-burger.active {
     font-size: 2.5rem;
@@ -112,10 +90,14 @@ header .navbar .link-custom:hover {
     justify-content: center;
     align-items: center;
     z-index: 1200;
+    margin-left: 1rem; /* Décalage du menu burger vers la gauche */
   }
   header .navbar #close-navbar {
     display: block;
-    margin-left: 2rem; /* Décalage de la croix */
+    font-size: 4rem; /* Ajustement de la taille de la croix */
+    position: absolute;
+    top: 1.5rem; /* Ajustement du positionnement vertical de la croix */
+    right: 2rem; /* Ajustement du positionnement horizontal de la croix */
   }
   header .navbar.active {
     right: 0;
@@ -126,20 +108,15 @@ header .navbar .link-custom:hover {
     text-align: center;
     font-size: 3rem;
     padding: 1rem;
+    margin-left: 0; /* Réinitialiser la marge à gauche */
   }
   .accueil .content h3 {
     font-size: 5.5rem;
   }
 }
 
-@media (max-width: 450px) {
-  html {
-    font-size: 50%;
-  }
-  .accueil .content h3 {
-    font-size: 4.5rem;
-  }
-}
+
+
 
 
   
