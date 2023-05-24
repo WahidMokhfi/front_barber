@@ -1,50 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../../../layout/Header";
+import Header from "../layout/Header";
 
 const UpdateService = () => {
 const [service, setService] = useState(null);
 const { id } = useParams();
 
 useEffect(() => {
-  fetch(`http://localhost:3005/api/services/${id}`)
-    .then((response) => response.json())
-    .then((data) => {
-      setService(data.data);
-    })
-    .catch((error) => {
+  const fetchService = async () => {
+    try {
+      const response = await fetch(`http://localhost:3005/api/services/${id}`);
+      if (response.ok) {
+        const data = await response.json();
+        setService(data.data);
+      } else {
+        throw new Error(`Erreur lors de la récupération du service : ${response.status}`);
+      }
+    } catch (error) {
       console.error("Erreur lors de la récupération du service :", error);
-    });
+    }
+  };
+
+  fetchService();
 }, [id]);
 
-const handleSubmit = (event) => {
+const handleSubmit = async (event) => {
   event.preventDefault();
 
   const name = event.target.name.value;
   const description = event.target.description.value;
   const price = event.target.price.value;
 
-  fetch(`http://localhost:3005/api/services/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: name,
-      description: description,
-      price: price,
-    }),
-  })
-    .then((response) => {
-      if (response.status === 200) {
-        console.log("Service modifié");
-      } else {
-        console.log("Erreur");
-      }
-    })
-    .catch((error) => {
-      console.error("Erreur lors de la mise à jour du service :", error);
+  try {
+    const response = await fetch(`http://localhost:3005/api/services/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        description: description,
+        price: price,
+      }),
     });
+
+    if (response.ok) {
+      console.log("Service modifié");
+    } else {
+      throw new Error(`Erreur lors de la mise à jour du service : ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour du service :", error);
+  }
 };
 
 return (
@@ -86,4 +93,3 @@ return (
 };
 
 export default UpdateService;
-

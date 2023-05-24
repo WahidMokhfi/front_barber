@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Header from "../../../layout/Header";
+import Header from "../layout/Header";
 import { useEffect } from "react";
 
 const CreateService = () => {
@@ -19,7 +19,7 @@ const handleSubmit = async (event) => {
   const price = event.target.price.value;
 
   try {
-    const response = await fetch("http://localhost:3005/api/services", {
+    const response = await fetch("http://localhost:3000/api/services", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

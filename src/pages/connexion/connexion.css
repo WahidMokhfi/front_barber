@@ -113,12 +113,42 @@
   color: #8a6d46;
 }
 
+/* Custom styles for ToastContainer */
+.Toastify__toast {
+  font-size: 1.8rem;
+  font-weight: bold; /* Texte plus épais */
+  border-radius: 5px;
+  padding: 15px; /* Augmenter la taille du contenu du toast */
+  color: #000000; /* Texte noir */
+}
+
+.Toastify__toast-body {
+  font-size: 1.8rem;
+  padding: 20px;
+}
+
+.Toastify__toast--success {
+  background-color: #32CD32; /* Fond vert */
+}
+
+.Toastify__toast--error {
+  background-color: #FF0000; /* Fond rouge */
+}
+
+.Toastify__toast--success .Toastify__toast-body svg,
+.Toastify__toast--error .Toastify__toast-body svg {
+  fill: #000000; /* Couleur des icônes en noir */
+}
+
+
+
 
   
-  
-  
-  
-  
-  
-  
-  
+    
+    
+    
+    
+    
+    
+    
+    

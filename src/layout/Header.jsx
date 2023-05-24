@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import './header.css';
 import { Link } from "react-router-dom";
 
+
 const Header = () => {
+// const id= localStorage.getItem("id");
 const [navbarActive, setNavbarActive] = useState(false);
 
 const handleMenuClick = () => {
@@ -12,6 +14,9 @@ const handleMenuClick = () => {
 const handleCloseClick = () => {
   setNavbarActive(false);
 };
+
+
+
 
 return (
   <header className="header">

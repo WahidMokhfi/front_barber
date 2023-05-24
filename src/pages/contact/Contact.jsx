@@ -23,7 +23,7 @@ function Contact() {
             <div className="inputBox">
                 <input type="text" placeholder="Votre Message" />
             </div>
-            <input type="submit" value="Envoyer" class="btn" />
+            <input type="submit" value="Envoyer" className="btn" />
         </form>
         <div className="image">
             <img src="img/IMG_BB3.PNG" alt="" />
