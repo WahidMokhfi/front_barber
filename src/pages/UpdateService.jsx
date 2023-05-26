@@ -7,7 +7,7 @@ const [service, setService] = useState(null);
 const { id } = useParams();
 
 useEffect(() => {
-  fetch(`http://localhost:3000/api/services/${id}`)
+  fetch(`http://localhost:3005/api/services/${id}`)
     .then((response) => response.json())
     .then((data) => {
       setService(data.data);
@@ -24,7 +24,7 @@ const handleSubmit = (event) => {
   const description = event.target.description.value;
   const price = event.target.price.value;
 
-  fetch(`http://localhost:3000/api/services/${id}`, {
+  fetch(`http://localhost:3005/api/services/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

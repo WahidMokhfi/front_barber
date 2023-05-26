@@ -9,7 +9,7 @@ const UpdateService = () => {
   useEffect(() => {
     const fetchService = async () => {
       try {
-        const response = await fetch(`http://localhost:3000api/services/${id}`);
+        const response = await fetch(`http://localhost:3005api/services/${id}`);
         if (response.ok) {
           const data = await response.json();
           setService(data.data);
@@ -32,7 +32,7 @@ const UpdateService = () => {
     const price = event.target.price.value;
 
     try {
-      const response = await fetch(`http://localhost:3000/api/services/${id}`, {
+      const response = await fetch(`http://localhost:3005/api/services/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

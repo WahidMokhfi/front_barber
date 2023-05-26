@@ -24,14 +24,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route path="/admin/*" element={<AdminRoutes />} />
-
         <Route path="/accueil" element={<Accueil />} />
         <Route path="/apropos" element={<Apropos />} />
         <Route path="/serv" element={<Services />} />
         <Route path="/avis" element={<Avis />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/connexion" element={<Connexion />} />
+        <Route path="/admin/*" element={<AdminRoutes />} />
       </Routes>
     </BrowserRouter>
   );
@@ -39,13 +38,16 @@ function App() {
 
 function AdminRoutes() {
   return (
-    <Routes>
-      <Route path="/services" element={<ServicesList />} />
-      <Route path="/services/:id" element={<ServiceDetails />} />
-      <Route path="/create-service" element={<CreateService />} />
-      <Route path="/services/:id/update" element={<UpdateService />} />
-      <Route path="/admin/home" element={<AdminHome />} />
-    </Routes>
+    <>
+      <AdminHome />
+      <Routes>
+        <Route path="/admin/home" element={<AdminHome />} />
+        <Route path="/admin/services" element={<ServicesList />} />
+        <Route path="/admin/services/:id" element={<ServiceDetails />} />
+        <Route path="/admin/create-service" element={<CreateService />} />
+        <Route path="/admin/services/:id/update" element={<UpdateService />} />
+      </Routes>
+    </>
   );
 }
 

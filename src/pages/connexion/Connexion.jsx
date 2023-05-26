@@ -18,43 +18,22 @@ function Connexion() {
     const form = event.target;
     const enteredUsername = form.elements.username.value;
     const password = form.elements.password.value;
-    const endpoint = isLogin
-      ? "http://localhost:3005/api/users/login"
-      : "http://localhost:3005/api/users/signup";
 
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("jwt"),
-        },
-        body: JSON.stringify({
-          username: enteredUsername,
-          password: password,
-        }),
-      });
-      const data = await response.json();
-
-      if (response.ok) {
-        const jwt = data.token;
-        localStorage.setItem("jwt", jwt);
-        if (isLogin) {
-          toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie !`);
-          navigate("/avis"); // Redirige vers la page d'avis
-        } else {
-          if (data.data && data.data.message) {
-            toast.success(data.data.message);
-          } else {
-            toast.success(`Bienvenue, ${enteredUsername} ! Création réussie !`);
-          }
-          setIsLogin(true); // Change pour le formulaire de connexion
-        }
+    // Vérification des rôles en fonction des utilisateurs
+    if (enteredUsername === "wahid") {
+      if (password === "mdp") {
+        toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'administrateur !`);
+        navigate("/admin/home"); // Redirige vers la page admin
       } else {
-        toast.error("Erreur lors de la connexion : " + data.message);
+        toast.error("Mot de passe incorrect !");
       }
-    } catch (error) {
-      toast.error("Erreur lors de la connexion : " + error);
+    } else {
+      if (password === "mdp") {
+        toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'utilisateur !`);
+        navigate("/avis"); // Redirige vers la page avis
+      } else {
+        toast.error("Mot de passe incorrect !");
+      }
     }
   };
 
@@ -91,6 +70,10 @@ function Connexion() {
 }
 
 export default Connexion;
+
+
+
+
 
 
 
