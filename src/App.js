@@ -16,6 +16,7 @@ import CreateService from "./pages/CreateService";
 import ServiceDetails from "./pages/ServiceDetails";
 import UpdateService from "./pages/UpdateService";
 import Accueil from "./pages/accueil/Accueil";
+import DeleteService from "./pages/DeleteService";
 
 function App() {
   return (
@@ -37,6 +38,8 @@ function App() {
         <Route path="/admin/services/:id" element={<ServiceDetails />} />
         <Route path="/admin/create-service" element={<CreateService />} />
         <Route path="/admin/services/:id/update" element={<UpdateService />} />
+        <Route path="/admin/services/:id/delete" element={<DeleteService />} />
+
       </Routes>
     </BrowserRouter>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Header from "../layout/Header";
 
-const UpdateService = () => {
+const ServicesList = () => {
   const [services, setServices] = useState([]);
   const { id } = useParams();
 
@@ -45,5 +45,5 @@ const UpdateService = () => {
   );
 };
 
-export default UpdateService;
+export default ServicesList;
 
