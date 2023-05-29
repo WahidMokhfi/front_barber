@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "../layout/Header";
 
 const ServicesList = () => {
   const [services, setServices] = useState([]);
-  const { id } = useParams();
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -24,7 +23,6 @@ const ServicesList = () => {
     fetchServices();
   }, []);
 
-
   return (
     <>
       <Header />
@@ -40,10 +38,40 @@ const ServicesList = () => {
           ))}
         </ul>
       </div>
-      <Link to={"/admin/create-service"}>Creer un service</Link>
+      <Link to={"/admin/create-service"}>Créer un service</Link>
     </>
   );
 };
 
 export default ServicesList;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

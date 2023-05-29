@@ -42,3 +42,15 @@ const DeleteService = ({ serviceId, token }) => {
 
 export default DeleteService;
 
+
+
+
+
+
+
+
+
+
+
+
+
