@@ -1,51 +1,51 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import Header from "../layout/Header";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ServiceDetails = () => {
-  const [service, setService] = useState(null);
   const { id } = useParams();
+  const [service, setService] = useState({});
 
   useEffect(() => {
-    const fetchService = async () => {
-      try {
-        const token = localStorage.getItem("accessToken");
-        const response = await fetch(`http://localhost:3005/api/services/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+    const token = localStorage.getItem("userToken");
+    fetch(`http://localhost:3005/api/services/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
         if (response.ok) {
-          const data = await response.json();
-          setService(data.data);
+          return response.json();
         } else {
           throw new Error(`Erreur lors de la récupération du service : ${response.status}`);
         }
-      } catch (error) {
+      })
+      .then((data) => setService(data))
+      .catch((error) => {
         console.error("Erreur lors de la récupération du service :", error);
-      }
-    };
-
-    fetchService();
+        toast.error("Une erreur s'est produite lors de la récupération du service");
+      });
   }, [id]);
 
   return (
     <>
       <Header />
-      {service ? (
-        <>
-          <h1>Détails du service : {service.name}</h1>
-          <p>Description : {service.description}</p>
+      <div className="service-details">
+        <h2>Détails du service</h2>
+        <div>
+          <h3>{service.name}</h3>
+          <p>{service.description}</p>
           <p>Prix : {service.price}</p>
-        </>
-      ) : (
-        <p>Chargement...</p>
-      )}
+        </div>
+      </div>
     </>
   );
 };
 
 export default ServiceDetails;
+
+
 
 
 

@@ -6,30 +6,29 @@
   background-position: center;
   filter: grayscale(100%);
   backdrop-filter: blur(8px);
-}
-.admin-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  justify-items: center;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  min-height: 100vh;
+}
+
+.admin-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
   padding: 20px;
 }
 
 .admin-card {
+  flex: 0 0 calc(50% - 20px);
   background-color: beige;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   padding: 20px;
   text-align: center;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-}
-
-.admin-container h1 {
-  font-size: 44px;
-  margin-bottom: 100px;
-  color: #fff;
+  margin: 10px;
 }
 
 .admin-container h2 {
@@ -57,6 +56,20 @@
 .admin-card-link:hover {
   background-color: #555;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

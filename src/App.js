@@ -33,12 +33,13 @@ function App() {
         <Route path="/connexion" element={<Connexion />} />
 
 
-        <Route path="/admin/home" element={<AdminHome />} />
+        <Route path="/admin/" element={<AdminHome />} />
         <Route path="/admin/services" element={<ServicesList />} />
         <Route path="/admin/services/:id" element={<ServiceDetails />} />
         <Route path="/admin/create-service" element={<CreateService />} />
-        <Route path="/admin/services/:id/update" element={<UpdateService />} />
-        <Route path="/admin/services/:id/delete" element={<DeleteService />} />
+        <Route path="/admin/delete-service/:id" element={<DeleteService />} />
+        <Route path="/admin/update-service/:id" element={<UpdateService />} />
+
 
       </Routes>
     </BrowserRouter>

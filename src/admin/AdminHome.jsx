@@ -1,3 +1,4 @@
+// AdminHome.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../layout/Header";
@@ -9,28 +10,34 @@ const AdminHome = () => {
       <Header />
       <div className="admin-body">
         <div className="admin-container grid">
-          <div className="admin-card large">
-            <h2>Vos Services</h2>
-            <p>Gérez les services disponibles.</p>
-            <Link to="/admin/services" className="admin-card-link">
-              Voir les services
-            </Link>
-          </div>
-          <div className="admin-card create-service">
+          <div className="admin-card">
             <h2>Créer un service</h2>
             <p>Créez un nouveau service.</p>
             <Link to="/admin/create-service" className="admin-card-link">
               Créer un service
             </Link>
           </div>
-          <div className="admin-card delete-service">
+          <div className="admin-card">
+            <h2>Voir les services</h2>
+            <p>Consultez la liste des services.</p>
+            <Link to="/admin/services" className="admin-card-link">
+              Voir les services
+            </Link>
+          </div>
+          <div className="admin-card">
+            <h2>Mettre à jour un service</h2>
+            <p>Modifiez les informations d'un service existant.</p>
+            <Link to="//admin/update-service/:id" className="admin-card-link">
+              Mettre à jour un service
+            </Link>
+          </div>
+          <div className="admin-card">
             <h2>Supprimer un service</h2>
             <p>Supprimez un service existant.</p>
-            <Link to="/admin/services/:id/delete" className="admin-card-link">
+            <Link to="/admin/delete-service/:id" className="admin-card-link">
               Supprimer un service
             </Link>
           </div>
-          {/* Ajoutez d'autres cartes pour les différentes fonctionnalités d'administration */}
         </div>
       </div>
     </>
@@ -38,6 +45,36 @@ const AdminHome = () => {
 };
 
 export default AdminHome;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

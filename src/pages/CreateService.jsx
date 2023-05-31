@@ -1,71 +1,91 @@
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../layout/Header";
-import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const CreateService = () => {
-const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const navigate = useNavigate();
 
-useEffect(() => {
-  if (!localStorage.getItem("jwt")) {
-    navigate("/login");
-  }
-}, [navigate]);
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-const handleSubmit = async (event) => {
-  event.preventDefault();
-
-  const name = event.target.name.value;
-  const description = event.target.description.value;
-  const price = event.target.price.value;
-
-  try {
-    const response = await fetch("http://localhost:3005/api/services", {
+    const token = localStorage.getItem("adminToken");
+    fetch("http://localhost:3005/api/services", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         name: name,
         description: description,
         price: price,
       }),
-    });
+    })
+      .then((response) => {
+        if (response.ok) {
+          toast.success("Le service a été créé avec succès");
+          navigate("/admin/services");
+        } else {
+          throw new Error(`Erreur lors de la création du service : ${response.status}`);
+        }
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la création du service :", error);
+        toast.error("Une erreur s'est produite lors de la création du service");
+      });
+  };
 
-    if (response.status === 200) {
-      console.log("Service créé");
-    } else {
-      throw new Error(`Erreur lors de la création du service : ${response.status}`);
-    }
-  } catch (error) {
-    console.error("Erreur lors de la création du service :", error);
-  }
-};
-
-return (
-  <>
-    <Header />
-
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Nom</label>
-        <input type="text" name="name" />
+  return (
+    <>
+      <Header />
+      <div className="admin-body">
+        <div className="admin-container">
+          <h2>Créer un service</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="name">Nom du service :</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="description">Description :</label>
+              <textarea
+                id="description"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+                required
+              ></textarea>
+            </div>
+            <div>
+              <label htmlFor="price">Prix :</label>
+              <input
+                type="number"
+                id="price"
+                value={price}
+                onChange={(event) => setPrice(event.target.value)}
+                required
+              />
+            </div>
+            <button type="submit">Créer</button>
+          </form>
+        </div>
       </div>
-      <div>
-        <label htmlFor="description">Description</label>
-        <input type="text" name="description" />
-      </div>
-      <div>
-        <label htmlFor="price">Prix</label>
-        <input type="number" name="price" />
-      </div>
-
-      <button type="submit">Créer le service</button>
-    </form>
-  </>
-);
+    </>
+  );
 };
 
 export default CreateService;
+
+
 
 
 

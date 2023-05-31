@@ -19,20 +19,63 @@ function Connexion() {
     const enteredUsername = form.elements.username.value;
     const password = form.elements.password.value;
 
-    // Vérification des rôles en fonction des utilisateurs
-    if (enteredUsername === "wahid") {
-      if (password === "mdp") {
-        toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'administrateur !`);
-        navigate("/admin/home"); // Redirige vers la page admin
-      } else {
-        toast.error("Mot de passe incorrect !");
+    if (isLogin) {
+      // Connexion de l'utilisateur
+      try {
+        // Effectuer une requête à votre backend pour vérifier les informations de connexion
+        const response = await fetch("http://localhost:3005/api/users/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: enteredUsername,
+            password: password,
+          }),
+        });
+
+        if (response.ok) {
+          const responseData = await response.json();
+          const { user } = responseData;
+          if (user.roles.includes('admin')) {
+            toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'administrateur !`);
+            navigate("/admin"); // Redirige vers la page d'accueil de l'administrateur
+          } else {
+            toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'utilisateur !`);
+            navigate("/avis"); // Redirige vers la page avis
+          }
+        } else {
+          // Échec de la connexion
+          toast.error("Nom d'utilisateur ou mot de passe incorrect !");
+        }
+      } catch (error) {
+        console.log("Une erreur s'est produite lors de la connexion :", error);
       }
     } else {
-      if (password === "mdp") {
-        toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'utilisateur !`);
-        navigate("/avis"); // Redirige vers la page avis
-      } else {
-        toast.error("Mot de passe incorrect !");
+      // Inscription d'un nouvel utilisateur
+      try {
+        // Effectuer une requête à votre backend pour enregistrer le nouvel utilisateur
+        const response = await fetch("http://localhost:3005/api/users/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: enteredUsername,
+            password: password,
+          }),
+        });
+
+        if (response.ok) {
+          // Inscription réussie
+          toast.success(`Bienvenue, ${enteredUsername} ! Votre compte a été créé avec succès !`);
+          navigate("/avis"); // Redirige vers la page avis
+        } else {
+          // Échec de l'inscription
+          toast.error("Une erreur s'est produite lors de l'inscription. Veuillez réessayer !");
+        }
+      } catch (error) {
+        console.log("Une erreur s'est produite lors de l'inscription :", error);
       }
     }
   };
@@ -44,32 +87,27 @@ function Connexion() {
       <div className="form-container-custom">
         <form className="form-custom" onSubmit={handleSubmit}>
           <h2>{isLogin ? "Connexion" : "Inscription"}</h2>
-          <label>Nom d'utilisateur :</label>
-          <input type="text" id="username" required autoComplete="username" />
+          <label htmlFor="username">Nom d'utilisateur :</label>
+          <input type="text" id="username" name="username" required autoComplete="username" />
           <label htmlFor="password">Mot de passe :</label>
-          <input type="password" id="password" required autoComplete="current-password" />
-          {!isLogin && (
-            <>
-              <label>Confirmer le mot de passe :</label>
-              <input type="password" id="confirm-password" required autoComplete="new-password" />
-            </>
-          )}
+          <input type="password" id="password" name="password" required autoComplete="current-password" />
           <button type="submit">{isLogin ? "Se connecter" : "S'inscrire"}</button>
-          <div className="switch-form-custom" onClick={handleSwitchForm}>
-            <div className="form-bottom">
-              <span>{isLogin ? "Pas encore de compte ?" : "Déjà inscrit ?"}</span>
-              <button type="button" className="auth-btn">
-                {isLogin ? "S'inscrire" : "Se connecter"}
-              </button>
-            </div>
-          </div>
         </form>
+        <div className="switch-form-custom">
+          <span>{isLogin ? "Pas encore de compte ?" : "Déjà un compte ?"}</span>
+          <button onClick={handleSwitchForm}>{isLogin ? "S'inscrire" : "Se connecter"}</button>
+        </div>
       </div>
     </>
   );
 }
 
 export default Connexion;
+
+
+
+
+
 
 
 
