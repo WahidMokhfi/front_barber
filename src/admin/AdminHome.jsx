@@ -27,7 +27,7 @@ const AdminHome = () => {
           <div className="admin-card">
             <h2>Mettre à jour un service</h2>
             <p>Modifiez les informations d'un service existant.</p>
-            <Link to="//admin/update-service/:id" className="admin-card-link">
+            <Link to="/admin/update-service/:id" className="admin-card-link">
               Mettre à jour un service
             </Link>
           </div>
@@ -45,6 +45,46 @@ const AdminHome = () => {
 };
 
 export default AdminHome;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

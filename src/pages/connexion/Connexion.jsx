@@ -36,8 +36,9 @@ function Connexion() {
 
         if (response.ok) {
           const responseData = await response.json();
-          const { user } = responseData;
+          const { user, token } = responseData;
           if (user.roles.includes('admin')) {
+            localStorage.setItem("adminToken", token); // Stocke le jeton d'administration dans le localStorage
             toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'administrateur !`);
             navigate("/admin"); // Redirige vers la page d'accueil de l'administrateur
           } else {
@@ -103,6 +104,95 @@ function Connexion() {
 }
 
 export default Connexion;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

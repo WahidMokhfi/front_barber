@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
+import Header from "../layout/Header";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const DeleteService = () => {
-  const [services, setServices] = useState([]);
+  const [services, setServices] = useState({});
+  const [name, setName] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -12,90 +16,170 @@ const DeleteService = () => {
         setServices(data);
       } catch (error) {
         console.log("Une erreur s'est produite lors de la récupération des services :", error);
+        toast.error("Une erreur s'est produite lors de la récupération des services");
       }
     };
 
     fetchServices();
   }, []);
 
-  const handleDeleteService = async (serviceId) => {
-    try {
-      const adminToken = localStorage.getItem("adminToken");
+  const handleDeleteService = async () => {
+    let serviceToDelete = null;
 
-      if (adminToken) {
-        // Afficher le toast de confirmation
-        toast.warn("Êtes-vous sûr de vouloir supprimer ce service ?", {
-          position: "top-right",
-          autoClose: false,
-          hideProgressBar: true,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          closeButton: false,
-          toastId: "confirm-delete",
-          render: ({ closeToast }) => (
-            <div>
-              <p>Êtes-vous sûr de vouloir supprimer ce service ?</p>
-              <button onClick={() => handleConfirmDelete(serviceId, closeToast)}>Valider</button>
-              <button onClick={closeToast}>Annuler</button>
-            </div>
-          ),
-        });
+    for (const key in services) {
+      if (services.hasOwnProperty(key) && services[key].name === name) {
+        serviceToDelete = services[key];
+        break;
       }
-    } catch (error) {
-      console.log("Une erreur s'est produite lors de la suppression du service :", error);
+    }
+
+    if (serviceToDelete) {
+      toast.warn("Êtes-vous sûr de vouloir supprimer ce service ?", {
+        position: "top-right",
+        autoClose: false,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        closeButton: false,
+        toastId: "confirm-delete",
+        render: ({ closeToast }) => (
+          <div>
+            <p>Êtes-vous sûr de vouloir supprimer ce service ?</p>
+            <button onClick={() => confirmDelete(serviceToDelete, closeToast)}>Valider</button>
+            <button onClick={closeToast}>Annuler</button>
+          </div>
+        ),
+      });
+    } else {
+      toast.error("Service non trouvé");
     }
   };
 
-  const handleConfirmDelete = async (serviceId, closeToast) => {
+  const confirmDelete = async (serviceToDelete, closeToast) => {
     try {
-      const adminToken = localStorage.getItem("adminToken");
+      await fetch(`http://localhost:3005/api/services/${serviceToDelete.id}`, {
+        method: "DELETE",
+      });
 
-      if (adminToken) {
-        const response = await fetch(`http://localhost:3005/api/services/${serviceId}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${adminToken}`,
-          },
-        });
+      const updatedServices = { ...services };
+      delete updatedServices[serviceToDelete.id];
+      setServices(updatedServices);
 
-        if (response.ok) {
-          toast.success("Le service a été supprimé avec succès");
-          // Actualiser la liste des services après la suppression
-          const updatedServices = services.filter((service) => service.id !== serviceId);
-          setServices(updatedServices);
-        } else {
-          toast.error("Une erreur s'est produite lors de la suppression du service");
-        }
-      }
+      closeToast();
+      toast.success("Le service a été supprimé avec succès");
     } catch (error) {
       console.log("Une erreur s'est produite lors de la suppression du service :", error);
-    } finally {
-      closeToast(); // Fermer le toast de confirmation
+      toast.error("Une erreur s'est produite lors de la suppression du service");
     }
   };
 
-  if (!Array.isArray(services)) {
-    return null; // ou afficher un message indiquant l'absence de services
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleDeleteService();
+  };
 
   return (
     <>
-      <div>
-        {services.map((service) => (
-          <div key={service.id}>
-            <p>{service.name}</p>
-            <button onClick={() => handleDeleteService(service.id)}>Supprimer</button>
-          </div>
-        ))}
+      <Header />
+      <div className="admin-body">
+        <div className="admin-container">
+          <h2>Supprimer un service</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="name">Nom du service :</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                required
+              />
+            </div>
+            <button type="submit">Supprimer</button>
+          </form>
+
+          <button onClick={() => navigate("/admin/")}>Retour à la page admin</button>
+        </div>
       </div>
     </>
   );
 };
 
 export default DeleteService;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
