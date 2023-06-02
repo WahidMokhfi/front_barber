@@ -12,8 +12,8 @@ const DeleteService = () => {
     const fetchServices = async () => {
       try {
         const response = await fetch("http://localhost:3005/api/services");
-        const data = await response.json();
-        setServices(data);
+        const jsonResponse = await response.json();
+        setServices(jsonResponse.data);
       } catch (error) {
         console.log("Une erreur s'est produite lors de la récupération des services :", error);
         toast.error("Une erreur s'est produite lors de la récupération des services");
@@ -27,37 +27,37 @@ const DeleteService = () => {
     let serviceToDelete = null;
 
     for (const key in services) {
-      if (services.hasOwnProperty(key) && services[key].name === name) {
+      if (services.hasOwnProperty(key) && services[key].id === parseInt(name)) {
         serviceToDelete = services[key];
         break;
       }
     }
-
-    if (serviceToDelete) {
-      toast.warn("Êtes-vous sûr de vouloir supprimer ce service ?", {
-        position: "top-right",
-        autoClose: false,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        closeButton: false,
-        toastId: "confirm-delete",
-        render: ({ closeToast }) => (
-          <div>
-            <p>Êtes-vous sûr de vouloir supprimer ce service ?</p>
-            <button onClick={() => confirmDelete(serviceToDelete, closeToast)}>Valider</button>
-            <button onClick={closeToast}>Annuler</button>
-          </div>
-        ),
-      });
-    } else {
-      toast.error("Service non trouvé");
-    }
+    confirmDelete(serviceToDelete);//, closeToast);
+    // if (serviceToDelete) {
+    //   toast.warn("Êtes-vous sûr de vouloir supprimer ce service ?", {
+    //     position: "top-right",
+    //     autoClose: false,
+    //     hideProgressBar: true,
+    //     closeOnClick: false,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     closeButton: false,
+    //     toastId: "confirm-delete",
+    //     render: ({ closeToast }) => (
+    //       <div>
+    //         <p>Êtes-vous sûr de vouloir supprimer ce service ?</p>
+    //         <button onClick={() => confirmDelete(serviceToDelete, closeToast)}>Valider</button>
+    //         <button onClick={closeToast}>Annuler</button>
+    //       </div>
+    //     ),
+    //   });
+    // } else {
+    //   toast.error("Service non trouvé");
+    // }
   };
 
-  const confirmDelete = async (serviceToDelete, closeToast) => {
+  const confirmDelete = async (serviceToDelete/*, closeToast*/) => {
     try {
       await fetch(`http://localhost:3005/api/services/${serviceToDelete.id}`, {
         method: "DELETE",
@@ -67,7 +67,7 @@ const DeleteService = () => {
       delete updatedServices[serviceToDelete.id];
       setServices(updatedServices);
 
-      closeToast();
+      //closeToast();
       toast.success("Le service a été supprimé avec succès");
     } catch (error) {
       console.log("Une erreur s'est produite lors de la suppression du service :", error);
