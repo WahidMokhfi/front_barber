@@ -31,20 +31,34 @@ header .navbar {
 }
 
 header .navbar .link-custom {
-  margin-left: 2rem;
-  margin-right: 2rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
   font-size: 2rem;
   color: white;
   text-transform: capitalize;
   padding: 0.5rem 1rem;
 }
 
+
 header .logo {
-  margin-left: 10px;
+  margin-left: 20px;
   font-size: 2.5rem;
   font-weight: bolder;
   color: white;
   text-transform: capitalize;
+}
+
+header .navbar .link-custom.deconnexion-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 0;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+header .navbar .link-custom.deconnexion-button:hover {
+  color: grey;
 }
 
 #menu-burger {
@@ -73,10 +87,10 @@ header .navbar .link-custom:hover {
   #menu-burger {
     display: inline-block;
     font-size: 4rem;
-    margin-right: 2rem; /* Décalage du menu burger vers la droite */
+    margin-left: 20rem; /* Décalage du menu burger vers la droite */
   }
   #menu-burger.active {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
   header .navbar {
     position: fixed;
@@ -97,7 +111,7 @@ header .navbar .link-custom:hover {
     font-size: 4rem; /* Ajustement de la taille de la croix */
     position: absolute;
     top: 1.5rem; /* Ajustement du positionnement vertical de la croix */
-    right: 2rem; /* Ajustement du positionnement horizontal de la croix */
+    right: 5rem; /* Ajustement du positionnement horizontal de la croix */
   }
   header .navbar.active {
     right: 0;
@@ -108,12 +122,30 @@ header .navbar .link-custom:hover {
     text-align: center;
     font-size: 3rem;
     padding: 1rem;
-    margin-left: 0; /* Réinitialiser la marge à gauche */
+    margin-left: 0;
   }
   .accueil .content h3 {
     font-size: 5.5rem;
   }
+
+  header .navbar .link-custom.deconnexion-button {
+    font-size: 2rem; 
+  }
 }
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
 
 
 

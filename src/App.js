@@ -7,6 +7,7 @@ import Services from "./pages/serv/Services";
 import Avis from "./pages/avis/Avis";
 import Contact from "./pages/contact/Contact";
 import Connexion from "./pages/connexion/Connexion";
+import Deconnexion from "./pages/connexion/Deconnexion";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -20,33 +21,98 @@ import DeleteService from "./pages/DeleteService";
 
 function App() {
   return (
-    <BrowserRouter>
-      <ToastContainer position="top-right" />
-      <Routes>
-        <Route path="/" element={<Home />} />
+  <BrowserRouter>
+    <ToastContainer position="top-right" />
+    <Routes>
+      <Route path="/" element={<Home />} />
 
-        <Route path="/accueil" element={<Accueil />} />
-        <Route path="/apropos" element={<Apropos />} />
-        <Route path="/serv" element={<Services />} />
-        <Route path="/avis" element={<Avis />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/connexion" element={<Connexion />} />
+      <Route path="/" element={<Accueil />} />
+      <Route path="/apropos" element={<Apropos />} />
+      <Route path="/serv" element={<Services />} />
+      <Route path="/avis" element={<Avis />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/connexion" element={<Connexion />} />
+      <Route path="/deconnexion" element={<Deconnexion />} />
 
-
-        <Route path="/admin/" element={<AdminHome />} />
-        <Route path="/admin/services" element={<ServicesList />} />
-        <Route path="/admin/services/:id" element={<ServiceDetails />} />
-        <Route path="/admin/create-service" element={<CreateService />} />
-        <Route path="/admin/delete-service/:id" element={<DeleteService />} />
-        <Route path="/admin/update-service/:id" element={<UpdateService />} />
-
-
-      </Routes>
-    </BrowserRouter>
-  );
+      <Route path="/admin/" element={<AdminHome />} />
+      <Route path="/admin/services" element={<ServicesList />} />
+      <Route path="/admin/services/:id" element={<ServiceDetails />} />
+      <Route path="/admin/create-service" element={<CreateService />} />
+      <Route path="/admin/delete-service/:id" element={<DeleteService />} />
+      <Route path="/admin/update-service/:id" element={<UpdateService />} />
+    </Routes>
+  </BrowserRouter>
+);
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
