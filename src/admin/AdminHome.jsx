@@ -10,6 +10,7 @@ const AdminHome = () => {
       <Header />
       <div className="admin-body">
         <div className="admin-container grid">
+          <h1 className="admin-title">CRUD</h1>
           <div className="admin-card">
             <h2>Créer un service</h2>
             <p>Créez un nouveau service.</p>
@@ -45,6 +46,7 @@ const AdminHome = () => {
 };
 
 export default AdminHome;
+
 
 
 

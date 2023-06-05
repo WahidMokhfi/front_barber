@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../layout/Header";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import './deleteservice.css';
 
 const DeleteService = () => {
   const [services, setServices] = useState({});
@@ -32,32 +33,10 @@ const DeleteService = () => {
         break;
       }
     }
-    confirmDelete(serviceToDelete);//, closeToast);
-    // if (serviceToDelete) {
-    //   toast.warn("Êtes-vous sûr de vouloir supprimer ce service ?", {
-    //     position: "top-right",
-    //     autoClose: false,
-    //     hideProgressBar: true,
-    //     closeOnClick: false,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     closeButton: false,
-    //     toastId: "confirm-delete",
-    //     render: ({ closeToast }) => (
-    //       <div>
-    //         <p>Êtes-vous sûr de vouloir supprimer ce service ?</p>
-    //         <button onClick={() => confirmDelete(serviceToDelete, closeToast)}>Valider</button>
-    //         <button onClick={closeToast}>Annuler</button>
-    //       </div>
-    //     ),
-    //   });
-    // } else {
-    //   toast.error("Service non trouvé");
-    // }
+    confirmDelete(serviceToDelete);
   };
 
-  const confirmDelete = async (serviceToDelete/*, closeToast*/) => {
+  const confirmDelete = async (serviceToDelete) => {
     try {
       await fetch(`http://localhost:3005/api/services/${serviceToDelete.id}`, {
         method: "DELETE",
@@ -67,7 +46,6 @@ const DeleteService = () => {
       delete updatedServices[serviceToDelete.id];
       setServices(updatedServices);
 
-      //closeToast();
       toast.success("Le service a été supprimé avec succès");
     } catch (error) {
       console.log("Une erreur s'est produite lors de la suppression du service :", error);
@@ -80,15 +58,19 @@ const DeleteService = () => {
     handleDeleteService();
   };
 
+  const handleRetourClick = () => {
+    navigate("/admin");
+  };
+
   return (
     <>
       <Header />
-      <div className="admin-body">
-        <div className="admin-container">
-          <h2>Supprimer un service</h2>
+      <div className="admin-delete-service-body">
+        <div className="admin-delete-service-container">
+          <h2 className="service-heading">Supprimer un service</h2>
           <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="name">Nom du service :</label>
+              <label htmlFor="name">ID du service :</label>
               <input
                 type="text"
                 id="name"
@@ -97,10 +79,12 @@ const DeleteService = () => {
                 required
               />
             </div>
-            <button type="submit">Supprimer</button>
+            <button type="submit" className="delete-button">Supprimer</button>
           </form>
 
-          <button onClick={() => navigate("/admin/")}>Retour à la page admin</button>
+          <button className="retour-button" onClick={handleRetourClick}>
+            Retour
+          </button>
         </div>
       </div>
     </>
@@ -108,6 +92,8 @@ const DeleteService = () => {
 };
 
 export default DeleteService;
+
+
 
 
 

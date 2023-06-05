@@ -20,9 +20,7 @@ function Connexion() {
     const password = form.elements.password.value;
 
     if (isLogin) {
-      // Connexion de l'utilisateur
       try {
-        // Effectuer une requête à votre backend pour vérifier les informations de connexion
         const response = await fetch("http://localhost:3005/api/users/login", {
           method: "POST",
           headers: {
@@ -38,15 +36,15 @@ function Connexion() {
           const responseData = await response.json();
           const { user, token } = responseData;
           if (user.roles.includes("admin")) {
-            localStorage.setItem("adminToken", token); // Stocke le jeton d'administration dans le localStorage
-            localStorage.setItem("adminName", enteredUsername); // Stocke le nom de l'administrateur dans le localStorage
+            localStorage.setItem("adminToken", token); // Je stock le jeton d'administration dans le localStorage
+            localStorage.setItem("adminName", enteredUsername); // Je stock le nom de l'administrateur dans le localStorage
             toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'administrateur !`);
-            navigate("/admin"); // Redirige vers la page d'accueil de l'administrateur
+            navigate("/admin"); // 
           } else {
-            localStorage.setItem("userToken", token); // Stocke le jeton de l'utilisateur dans le localStorage
-            localStorage.setItem("userName", enteredUsername); // Stocke le nom de l'utilisateur dans le localStorage
+            localStorage.setItem("userToken", token); 
+            localStorage.setItem("userName", enteredUsername); 
             toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'utilisateur !`);
-            navigate("/avis"); // Redirige vers la page avis
+            navigate("/avis"); 
           }
         } else {
           // Échec de la connexion
@@ -58,7 +56,7 @@ function Connexion() {
     } else {
       // Inscription d'un nouvel utilisateur
       try {
-        // Effectuer une requête à votre backend pour enregistrer le nouvel utilisateur
+        // J'effectue une requête à mon backend pour enregistrer le nouvel utilisateur
         const response = await fetch("http://localhost:3005/api/users/signup", {
           method: "POST",
           headers: {

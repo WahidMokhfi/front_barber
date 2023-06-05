@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../layout/Header";
 import { toast } from "react-toastify";
+import "./createservice.css";
 
 const CreateService = () => {
   const [name, setName] = useState("");
@@ -53,14 +54,18 @@ const CreateService = () => {
     }
   };
 
+  const handleRetourClick = () => {
+    navigate("/admin");
+  };
+
   return (
     <>
       <Header />
-      <div className="admin-body">
-        <div className="admin-container">
-          <h2>Créer un service</h2>
+      <div className="admin-create-service-body">
+        <div className="admin-create-service-container">
+          <h2 className="title">Créer un service</h2>
           <form onSubmit={handleSubmit}>
-            <div>
+            <div className="admin-create-service-field">
               <label htmlFor="name">Nom du service :</label>
               <input
                 type="text"
@@ -70,7 +75,7 @@ const CreateService = () => {
                 required
               />
             </div>
-            <div>
+            <div className="admin-create-service-field">
               <label htmlFor="description">Description :</label>
               <textarea
                 id="description"
@@ -79,7 +84,7 @@ const CreateService = () => {
                 required
               ></textarea>
             </div>
-            <div>
+            <div className="admin-create-service-field">
               <label htmlFor="price">Prix :</label>
               <input
                 type="number"
@@ -89,7 +94,10 @@ const CreateService = () => {
                 required
               />
             </div>
-            <button type="submit">Créer</button>
+            <button type="submit" className="create-button">Créer</button>
+            <button className="retour-button" onClick={handleRetourClick}>
+              Retour
+            </button>
           </form>
         </div>
       </div>
@@ -98,6 +106,7 @@ const CreateService = () => {
 };
 
 export default CreateService;
+
 
 
 
