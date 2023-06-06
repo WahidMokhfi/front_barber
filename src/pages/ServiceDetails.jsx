@@ -8,7 +8,7 @@ const ServiceDetails = () => {
   const [service, setService] = useState({});
 
   useEffect(() => {
-    const token = localStorage.getItem("userToken");
+    const token = localStorage.getItem("adminToken");
     fetch(`http://localhost:3005/api/services/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -18,13 +18,17 @@ const ServiceDetails = () => {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error(`Erreur lors de la récupération du service : ${response.status}`);
+          throw new Error(
+            `Erreur lors de la récupération du service : ${response.status}`
+          );
         }
       })
       .then((data) => setService(data))
       .catch((error) => {
         console.error("Erreur lors de la récupération du service :", error);
-        toast.error("Une erreur s'est produite lors de la récupération du service");
+        toast.error(
+          "Une erreur s'est produite lors de la récupération du service"
+        );
       });
   }, [id]);
 
@@ -44,6 +48,7 @@ const ServiceDetails = () => {
 };
 
 export default ServiceDetails;
+
 
 
 

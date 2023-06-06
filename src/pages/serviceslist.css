@@ -55,6 +55,7 @@
 
 .services-list-item {
   margin-bottom: 10px;
+  position: relative;
 }
 
 .service-link {
@@ -72,6 +73,26 @@
   background-color: #000;
 }
 
+.service-link.active {
+  background-color: #000;
+}
+
+.selected-service {
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.selected-service h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.service-detail {
+  font-size: 14px;
+}
+
 .retour-button {
   display: block;
   width: 200px;
@@ -83,14 +104,16 @@
   transition: background-color 0.3s ease;
   font-size: 16px;
   margin-top: 20px;
-  position: absolute;
   bottom: 20px;
   right: 20px;
+  position: absolute;
 }
 
 .retour-button:hover {
   background-color: #555; 
 }
+
+
 
   
   

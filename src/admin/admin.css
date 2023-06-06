@@ -14,17 +14,18 @@
 .admin-title {
   font-size: 60px;
   color: white;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7),
-               0 0 20px rgba(255, 255, 255, 0.7),
-               0 0 30px rgba(255, 255, 255, 0.7),
-               0 0 40px rgba(255, 255, 255, 0.7),
-               0 0 50px rgba(255, 255, 255, 0.7),
-               0 0 60px rgba(255, 255, 255, 0.7),
-               0 0 70px rgba(255, 255, 255, 0.7);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
-  top: 100px; 
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
+}
+
+.admin-card p {
+  font-size: 14px;
+  color: black !important; /* Modifier la couleur du texte en noir */
+  margin-bottom: 20px;
 }
 
 .admin-container {
@@ -42,21 +43,39 @@
   color: #000;
 }
 
-.admin-container p {
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 20px;
-}
-
 .admin-card {
   flex: 0 0 calc(50% - 20px);
   background-color: beige;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 40px 20px; /* Ajustez le padding ici */
   text-align: center;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   margin: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s ease; /* Ralentir la transition */
+  border-radius: 5px; /* Ajouter un léger bord arrondi */
+}
+
+.admin-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.admin-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.admin-card:hover::before {
+  opacity: 1;
 }
 
 .admin-card-link {
@@ -67,11 +86,18 @@
   text-decoration: none;
   border-radius: 10px;
   transition: background-color 0.3s ease;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
 .admin-card-link:hover {
   background-color: #555;
 }
+
+
 
 
 

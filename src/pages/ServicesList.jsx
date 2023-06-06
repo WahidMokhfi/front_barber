@@ -1,41 +1,41 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Header from "../layout/Header";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "./serviceslist.css";
 
 const ServicesList = () => {
   const [services, setServices] = useState([]);
-  const [selectedService, setSelectedService] = useState(null); 
+  const [selectedService, setSelectedService] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("userToken");
-    fetch("http://localhost:3005/api/services", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
+    const token = localStorage.getItem("adminToken");
+
+    const fetchServices = async () => {
+      try {
+        const response = await fetch("http://localhost:3005/api/services", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (response.ok) {
-          return response.json();
+          const data = await response.json();
+          setServices(data.data);
         } else {
           throw new Error(
             `Erreur lors de la récupération des services : ${response.status}`
           );
         }
-      })
-      .then((data) => {
-        if (data && Array.isArray(data.data)) {
-          setServices(data.data);
-        } else {
-          throw new Error("Les données des services ne sont pas au format attendu.");
-        }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Erreur lors de la récupération des services :", error);
-        toast.error("Une erreur s'est produite lors de la récupération des services");
-      });
+        toast.error(
+          "Une erreur s'est produite lors de la récupération des services"
+        );
+      }
+    };
+
+    fetchServices();
   }, []);
 
   const handleRetourClick = () => {
@@ -43,38 +43,11 @@ const ServicesList = () => {
   };
 
   const handleServiceClick = (service) => {
-    fetch(`http://localhost:3005/api/services/${service.id}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error(
-            `Erreur lors de la récupération des détails du service : ${response.status}`
-          );
-        }
-      })
-      .then((data) => {
-        setSelectedService(data);
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la récupération des détails du service :", error);
-        toast.error("Une erreur s'est produite lors de la récupération des détails du service");
-      });
-  };
-
-
-  const renderSelectedService = () => {
-    if (selectedService) {
-      return (
-        <div>
-          <h3>Détails du service</h3>
-          <p>Nom : {selectedService.name}</p>
-          <p>Description : {selectedService.description}</p>
-          <p>Prix : {selectedService.price}</p>
-        </div>
-      );
+    if (selectedService && selectedService.id === service.id) {
+      setSelectedService(null); // Fermer le détail si le même service est cliqué à nouveau
+    } else {
+      setSelectedService(service);
     }
-    return null;
   };
 
   return (
@@ -87,18 +60,29 @@ const ServicesList = () => {
             <ul className="services-list-ul">
               {services.map((service) => (
                 <li key={service.id} className="services-list-item">
-                  <Link
-                    to={`/services/${service.id}`}
-                    className="service-link"
-                    onClick={() => handleServiceClick(service)} 
+                  <button
+                    className={`service-link ${
+                      selectedService === service ? "active" : ""
+                    }`}
+                    onClick={() => handleServiceClick(service)}
                   >
                     {service.name}
-                  </Link>
+                  </button>
+                  {selectedService === service && (
+                    <div className="selected-service">
+                      <h3>Détails du service</h3>
+                      <p className="service-detail">ID : {service.id}</p>
+                      <p className="service-detail">Nom : {service.name}</p>
+                      <p className="service-detail">
+                        Description : {service.description}
+                      </p>
+                      <p className="service-detail">Prix : {service.price}</p>
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
-          {renderSelectedService()} 
           <div className="button-container">
             <button className="retour-button" onClick={handleRetourClick}>
               Retour
@@ -111,6 +95,17 @@ const ServicesList = () => {
 };
 
 export default ServicesList;
+
+
+
+
+
+
+
+
+
+
+
 
 
 

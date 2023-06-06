@@ -39,12 +39,15 @@ const Deconnexion = () => {
       <div className="deconnexion-container">
         <h2>Déconnexion</h2>
         <p>Veuillez patienter pendant que vous êtes déconnecté...</p>
+        <button className="form-custom button[type='submit']">Déconnexion</button>
       </div>
     </>
   );
 };
 
 export default Deconnexion;
+
+
 
 
 

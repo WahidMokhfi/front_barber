@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative; /* Ajout de la position relative */
+  position: relative; 
 }
 
 .admin-update-service-container h2 {

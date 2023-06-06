@@ -33,23 +33,30 @@ const DeleteService = () => {
         break;
       }
     }
-    confirmDelete(serviceToDelete);
-  };
 
-  const confirmDelete = async (serviceToDelete) => {
-    try {
-      await fetch(`http://localhost:3005/api/services/${serviceToDelete.id}`, {
-        method: "DELETE",
-      });
+    if (serviceToDelete) {
+      const confirmDelete = window.confirm("Êtes-vous sûr de vouloir supprimer ce service ?");
 
-      const updatedServices = { ...services };
-      delete updatedServices[serviceToDelete.id];
-      setServices(updatedServices);
+      if (confirmDelete) {
+        try {
+          await fetch(`http://localhost:3005/api/services/${serviceToDelete.id}`, {
+            method: "DELETE",
+          });
 
-      toast.success("Le service a été supprimé avec succès");
-    } catch (error) {
-      console.log("Une erreur s'est produite lors de la suppression du service :", error);
-      toast.error("Une erreur s'est produite lors de la suppression du service");
+          const updatedServices = { ...services };
+          delete updatedServices[serviceToDelete.id];
+          setServices(updatedServices);
+
+          toast.success("Le service a été supprimé avec succès");
+        } catch (error) {
+          console.log("Une erreur s'est produite lors de la suppression du service :", error);
+          toast.error("Une erreur s'est produite lors de la suppression du service");
+        }
+      } else {
+        toast.info("Suppression annulée");
+      }
+    } else {
+      toast.error("Service introuvable");
     }
   };
 
@@ -92,6 +99,8 @@ const DeleteService = () => {
 };
 
 export default DeleteService;
+
+
 
 
 
