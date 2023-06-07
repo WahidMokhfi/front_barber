@@ -27,7 +27,7 @@
   z-index: 1000;
 }
 
-.services-list-container.services-prefix {
+.users-list-container.users-prefix {
   padding: 20px;
   max-width: 700px;
   width: 100%;
@@ -40,25 +40,25 @@
   z-index: 1;
 }
 
-.services-list-container.services-prefix h2.services-list-title {
+.users-list-container.users-prefix h2.users-list-title {
   text-align: center;
   margin-bottom: 20px;
   color: black;
   font-size: 24px;
 }
 
-.services-list-ul {
+.users-list-ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.services-list-item {
+.users-list-item {
   margin-bottom: 10px;
   position: relative;
 }
 
-.service-link {
+.user-link {
   display: block;
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.2);
@@ -69,27 +69,27 @@
   font-size: 16px;
 }
 
-.service-link:hover {
+.user-link:hover {
   background-color: #000;
 }
 
-.service-link.active {
+.user-link.active {
   background-color: #000;
 }
 
-.selected-service {
+.selected-user {
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 5px;
   margin-top: 10px;
 }
 
-.selected-service h3 {
+.selected-user h3 {
   font-size: 18px;
   margin-bottom: 5px;
 }
 
-.service-detail {
+.user-detail {
   font-size: 14px;
 }
 
@@ -97,7 +97,7 @@
   display: block;
   width: 200px;
   padding: 10px;
-  background-color: #333; 
+  background-color: #333;
   text-decoration: none;
   color: #fff;
   border-radius: 5px;
@@ -110,8 +110,9 @@
 }
 
 .retour-button:hover {
-  background-color: #555; 
+  background-color: #555;
 }
+
 
 
 

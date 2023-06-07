@@ -1,15 +1,3 @@
-/* .accueil {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    background-image: url("http://localhost:3000/img/banner1.JPG");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    padding-top: 0;
-    padding-bottom: 0;
-} */
-
 .accueil{
     min-height: 100vh;
     display: flex;

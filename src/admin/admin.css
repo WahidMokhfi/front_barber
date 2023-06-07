@@ -13,18 +13,44 @@
 
 .admin-title {
   font-size: 60px;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  color: #8a6d46;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.2);
   position: absolute;
-  top: 20px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
+  animation: titleAnimation 5s linear forwards;
   z-index: 2;
 }
 
+
+@keyframes titleAnimation {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-10px, -10px) scale(0.3);
+  }
+}
+
+
+
+
+
+
 .admin-card p {
   font-size: 14px;
-  color: black !important; /* Modifier la couleur du texte en noir */
+  color: black !important; 
   margin-bottom: 20px;
 }
 
@@ -48,13 +74,13 @@
   background-color: beige;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 40px 20px; /* Ajustez le padding ici */
+  padding: 40px 20px; 
   text-align: center;
   margin: 10px;
   position: relative;
   overflow: hidden;
-  transition: transform 0.5s ease; /* Ralentir la transition */
-  border-radius: 5px; /* Ajouter un léger bord arrondi */
+  transition: transform 0.5s ease; 
+  border-radius: 5px; 
 }
 
 .admin-card::before {
@@ -91,11 +117,26 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
+  width: 200px;
 }
 
 .admin-card-link:hover {
   background-color: #555;
 }
+
+.admin-card-services {
+  order: 1;
+  margin-top: 100px;
+}
+
+.admin-card-users {
+  order: 2;
+  margin-top: 500px;
+}
+
+
+
+
 
 
 

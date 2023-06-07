@@ -19,6 +19,11 @@ import UpdateService from "./pages/UpdateService";
 import Accueil from "./pages/accueil/Accueil";
 import DeleteService from "./pages/DeleteService";
 
+import CreateUser from "./pages/CreateUser";
+import UsersList from "./pages/UsersList";
+import UpdateUser from "./pages/UpdateUser";
+import DeleteUser from "./pages/DeleteUser";
+
 function App() {
   return (
   <BrowserRouter>
@@ -40,6 +45,11 @@ function App() {
       <Route path="/admin/create-service" element={<CreateService />} />
       <Route path="/admin/delete-service/:id" element={<DeleteService />} />
       <Route path="/admin/update-service/:id" element={<UpdateService />} />
+
+      <Route path="/admin/create-user" element={<CreateUser />} />
+      <Route path="/admin/users" element={<UsersList />} />
+      <Route path="/admin/update-user/:id" element={<UpdateUser />} />
+      <Route path="/admin/delete-user/:id" element={<DeleteUser />} />
     </Routes>
   </BrowserRouter>
 );
