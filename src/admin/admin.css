@@ -9,44 +9,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative; /* Ajout */
 }
 
 .admin-title {
-  font-size: 60px;
+  font-size: 24px; /* Modification */
   color: #8a6d46;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.2);
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 20px; /* Modification */
+  left: 20px; /* Modification */
   animation: titleAnimation 5s linear forwards;
   z-index: 2;
 }
-
-
-@keyframes titleAnimation {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  80% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-10px, -10px) scale(0.3);
-  }
-}
-
-
-
-
-
 
 .admin-card p {
   font-size: 14px;

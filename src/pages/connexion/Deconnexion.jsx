@@ -20,7 +20,7 @@ const Deconnexion = () => {
           const { username } = responseData;
           toast.info(`Au revoir, ${username} ! À bientôt !`);
           localStorage.removeItem("adminToken");
-          navigate("/avis");
+          navigate("/accueil");
         } else {
           toast.error("Une erreur s'est produite lors de la déconnexion. Veuillez réessayer !");
         }

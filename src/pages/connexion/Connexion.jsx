@@ -36,27 +36,25 @@ function Connexion() {
           const responseData = await response.json();
           const { user, token } = responseData;
           if (user.roles.includes("admin")) {
-            localStorage.setItem("adminToken", token); // Je stock le jeton d'administration dans le localStorage
-            localStorage.setItem("adminName", enteredUsername); // Je stock le nom de l'administrateur dans le localStorage
+            localStorage.setItem("adminToken", token);
+            localStorage.setItem("adminName", enteredUsername);
             toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'administrateur !`);
-            navigate("/admin"); // 
+            navigate("/admin");
           } else {
-            localStorage.setItem("userToken", token); 
-            localStorage.setItem("userName", enteredUsername); 
+            localStorage.setItem("userToken", token);
+            localStorage.setItem("userName", enteredUsername);
+            localStorage.setItem("userId", user.id);
             toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'utilisateur !`);
-            navigate("/avis"); 
+            navigate("/create-review");
           }
         } else {
-          // Échec de la connexion
           toast.error("Nom d'utilisateur ou mot de passe incorrect !");
         }
       } catch (error) {
         console.log("Une erreur s'est produite lors de la connexion :", error);
       }
     } else {
-      // Inscription d'un nouvel utilisateur
       try {
-        // J'effectue une requête à mon backend pour enregistrer le nouvel utilisateur
         const response = await fetch("http://localhost:3005/api/users/signup", {
           method: "POST",
           headers: {
@@ -69,11 +67,9 @@ function Connexion() {
         });
 
         if (response.ok) {
-          // Inscription réussie
           toast.success(`Bienvenue, ${enteredUsername} ! Votre compte a été créé avec succès !`);
-          navigate("/avis"); // Redirige vers la page avis
+          navigate("/create-review");
         } else {
-          // Échec de l'inscription
           toast.error("Une erreur s'est produite lors de l'inscription. Veuillez réessayer !");
         }
       } catch (error) {
@@ -105,6 +101,8 @@ function Connexion() {
 }
 
 export default Connexion;
+
+
 
 
 

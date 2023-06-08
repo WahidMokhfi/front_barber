@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../layout/Header";
 import { toast } from "react-toastify";
-import "./createservice.css";
+import "./createuser.css";
+import Select from 'react-select';
 
 const CreateUser = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [selectedRole, setSelectedRole] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,6 +24,11 @@ const CreateUser = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (!selectedRole) {
+      toast.error("Veuillez sélectionner un rôle");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:3005/api/users/signup", {
         method: "POST",
@@ -31,12 +38,16 @@ const CreateUser = () => {
         body: JSON.stringify({
           username: username,
           password: password,
-          roles: ["user"], // Set the default role as "user"
+          role: selectedRole.value,
         }),
       });
 
       if (response.ok) {
-        toast.success("L'utilisateur a été créé avec succès");
+        if (selectedRole.value === 'admin') {
+          toast.success("L'administrateur a été créé avec succès");
+        } else {
+          toast.success("L'utilisateur a été créé avec succès");
+        }
         navigate("/admin/");
       } else {
         throw new Error(
@@ -58,11 +69,11 @@ const CreateUser = () => {
   return (
     <>
       <Header />
-      <div className="admin-create-service-body">
-        <div className="admin-create-service-container">
+      <div className="admin-create-user-body">
+        <div className="admin-create-user-container">
           <h2 className="title">Créer un utilisateur</h2>
           <form onSubmit={handleSubmit}>
-            <div className="admin-create-service-field">
+            <div className="admin-create-user-field">
               <label htmlFor="username">Nom d'utilisateur :</label>
               <input
                 type="text"
@@ -70,10 +81,10 @@ const CreateUser = () => {
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
                 required
-                autoComplete="username" // Ajout de l'attribut "autocomplete" pour le nom d'utilisateur
+                autoComplete="username"
               />
             </div>
-            <div className="admin-create-service-field">
+            <div className="admin-create-user-field">
               <label htmlFor="password">Mot de passe :</label>
               <input
                 type="password"
@@ -81,7 +92,34 @@ const CreateUser = () => {
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 required
-                autoComplete="new-password" // Ajout de l'attribut "autocomplete" pour le mot de passe
+                autoComplete="new-password"
+              />
+            </div>
+            <div className="admin-create-user-field">
+              <label htmlFor="role">Rôle :</label>
+              <Select
+                id="role"
+                value={selectedRole}
+                options={[
+                  { value: 'user', label: 'Utilisateur' },
+                  { value: 'admin', label: 'Administrateur' }
+                ]}
+                onChange={setSelectedRole}
+                required
+                styles={{
+                  control: (provided) => ({
+                    ...provided,
+                    fontSize: '18px'
+                  }),
+                  singleValue: (provided) => ({
+                    ...provided,
+                    fontSize: '18px'
+                  }),
+                  menu: (provided) => ({
+                    ...provided,
+                    fontSize: '18px'
+                  })
+                }}
               />
             </div>
             <button type="submit" className="create-button">
@@ -98,6 +136,15 @@ const CreateUser = () => {
 };
 
 export default CreateUser;
+
+
+
+
+
+
+
+
+
 
 
 

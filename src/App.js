@@ -24,6 +24,8 @@ import UsersList from "./pages/UsersList";
 import UpdateUser from "./pages/UpdateUser";
 import DeleteUser from "./pages/DeleteUser";
 
+import CreateReview from "./pages/CreateReview";
+
 function App() {
   return (
   <BrowserRouter>
@@ -50,6 +52,8 @@ function App() {
       <Route path="/admin/users" element={<UsersList />} />
       <Route path="/admin/update-user/:id" element={<UpdateUser />} />
       <Route path="/admin/delete-user/:id" element={<DeleteUser />} />
+
+      <Route path="/create-review" element={<CreateReview />} />
     </Routes>
   </BrowserRouter>
 );
