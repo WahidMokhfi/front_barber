@@ -52,16 +52,16 @@ const UsersList = () => {
 
   return (
     <>
-      <Header className="header-prefix" />
-      <div className="prefix-body">
-        <div className="users-list-container users-prefix">
+      <Header className="users-list-header-prefix" />
+      <div className="users-list-prefix-body">
+        <div className="users-list-container users-list-prefix">
           <h2 className="users-list-title">Liste des utilisateurs</h2>
-          <div className="glass-container">
+          <div className="users-list-glass-container">
             <ul className="users-list-ul">
               {users.map((user) => (
                 <li key={user.id} className="users-list-item">
                   <button
-                    className={`user-link ${
+                    className={`users-list-user-link ${
                       selectedUser === user ? "active" : ""
                     }`}
                     onClick={() => handleUserClick(user)}
@@ -69,10 +69,12 @@ const UsersList = () => {
                     {user.username}
                   </button>
                   {selectedUser === user && (
-                    <div className="selected-user">
+                    <div className="users-list-selected-user">
                       <h3>Détails de l'utilisateur</h3>
-                      <p className="user-detail">ID : {user.id}</p>
-                      <p className="user-detail">Nom d'utilisateur : {user.username}</p>
+                      <p className="users-list-user-detail">ID : {user.id}</p>
+                      <p className="users-list-user-detail">Nom d'utilisateur : {user.username}</p>
+                      <p className="users-list-user-detail">Rôle : {user.roles}</p>
+                      <p className="users-list-user-detail">Date de création : {user.created}</p> {/* Ajout de la date de création */}
                       {/* Ajoutez d'autres détails d'utilisateur ici */}
                     </div>
                   )}
@@ -80,8 +82,8 @@ const UsersList = () => {
               ))}
             </ul>
           </div>
-          <div className="button-container">
-            <button className="retour-button" onClick={handleRetourClick}>
+          <div className="users-list-button-container">
+            <button className="users-list-retour-button" onClick={handleRetourClick}>
               Retour
             </button>
           </div>
@@ -92,3 +94,7 @@ const UsersList = () => {
 };
 
 export default UsersList;
+
+
+
+

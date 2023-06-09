@@ -18,63 +18,43 @@ function Connexion() {
     const form = event.target;
     const enteredUsername = form.elements.username.value;
     const password = form.elements.password.value;
+    const endpoint = isLogin
+      ? "http://localhost:3005/api/users/login"
+      : "http://localhost:3005/api/users/signup";
 
-    if (isLogin) {
-      try {
-        const response = await fetch("http://localhost:3005/api/users/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: enteredUsername,
-            password: password,
-          }),
-        });
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: enteredUsername,
+          password: password,
+        }),
+      });
 
-        if (response.ok) {
-          const responseData = await response.json();
-          const { user, token } = responseData;
-          if (user.roles.includes("admin")) {
-            localStorage.setItem("adminToken", token);
-            localStorage.setItem("adminName", enteredUsername);
-            toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'administrateur !`);
-            navigate("/admin");
-          } else {
-            localStorage.setItem("userToken", token);
-            localStorage.setItem("userName", enteredUsername);
-            localStorage.setItem("userId", user.id);
-            toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'utilisateur !`);
-            navigate("/create-review");
-          }
+      if (response.ok) {
+        const responseData = await response.json();
+        const { user, token } = responseData;
+        if (user.roles.includes("admin")) {
+          localStorage.setItem("adminToken", token);
+          localStorage.setItem("adminName", enteredUsername);
+          toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'administrateur !`);
+          navigate("/admin");
         } else {
-          toast.error("Nom d'utilisateur ou mot de passe incorrect !");
-        }
-      } catch (error) {
-        console.log("Une erreur s'est produite lors de la connexion :", error);
-      }
-    } else {
-      try {
-        const response = await fetch("http://localhost:3005/api/users/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: enteredUsername,
-            password: password,
-          }),
-        });
-
-        if (response.ok) {
-          toast.success(`Bienvenue, ${enteredUsername} ! Votre compte a été créé avec succès !`);
+          localStorage.setItem("userToken", token);
+          localStorage.setItem("userName", enteredUsername);
+          localStorage.setItem("userId", user.id);
+          toast.success(`Bienvenue, ${enteredUsername} ! Connexion réussie en tant qu'utilisateur !`);
           navigate("/create-review");
-        } else {
-          toast.error("Une erreur s'est produite lors de l'inscription. Veuillez réessayer !");
         }
-      } catch (error) {
-        console.log("Une erreur s'est produite lors de l'inscription :", error);
+      } else {
+        const errorData = await response.json();
+        toast.error("Erreur lors de la connexion : " + errorData.message);
       }
+    } catch (error) {
+      toast.error("Erreur lors de la connexion : " + error);
     }
   };
 
@@ -101,6 +81,19 @@ function Connexion() {
 }
 
 export default Connexion;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

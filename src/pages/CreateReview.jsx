@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../layout/Header";
 import { toast } from "react-toastify";
 import "./createuser.css";
 import StarRatings from "react-star-ratings";
 
 const CreateReview = () => {
-  const [content, setContent] = useState("");
-  const [rating, setRating] = useState(1);
+  const [comment, setComment] = useState("");
+  const [note, setNote] = useState(1);
   const navigate = useNavigate();
+  const { user_id } = useParams();
 
   useEffect(() => {
     const userToken = localStorage.getItem("userToken");
-    const userId = localStorage.getItem("userId");
-    if (!userToken || !userId) {
+    if (!userToken) {
       navigate("/connexion");
       toast.error("Veuillez vous connecter pour accéder à cette page");
     }
@@ -23,25 +23,24 @@ const CreateReview = () => {
     event.preventDefault();
 
     try {
-      const userId = localStorage.getItem("userId");
-      console.log("userId:", userId); // Ajout du console.log
-      if (!userId) {
-        throw new Error("Impossible de récupérer l'ID de l'utilisateur");
+      const userToken = localStorage.getItem("userToken");
+      if (!userToken) {
+        throw new Error("Impossible de récupérer le jeton d'utilisateur");
       }
 
-      // Conversion de la valeur de rating en chiffre entre 1 et 5
-      const convertedRating = Math.ceil(rating);
+      const convertedNote = Math.ceil(note);
 
       const response = await fetch("http://localhost:3005/api/reviews", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          Authorization: `Bearer ${userToken}`,
         },
         body: JSON.stringify({
-          content: content,
-          rating: convertedRating,
-          userId: userId,
+          comment: comment,
+          note: convertedNote,
+          created_at: new Date(),
+          user_id: user_id,
         }),
       });
 
@@ -71,24 +70,24 @@ const CreateReview = () => {
           <h2 className="title">Créer une review</h2>
           <form onSubmit={handleSubmit}>
             <div className="admin-create-user-field">
-              <label htmlFor="content">Contenu de l'avis :</label>
+              <label htmlFor="comment">Commentaire :</label>
               <textarea
-                id="content"
-                value={content}
-                onChange={(event) => setContent(event.target.value)}
+                id="comment"
+                value={comment}
+                onChange={(event) => setComment(event.target.value)}
                 required
               />
             </div>
             <div className="admin-create-user-field">
-              <label htmlFor="rating">Note/rating :</label>
+              <label htmlFor="note">Note :</label>
               <StarRatings
-                rating={rating}
+                rating={note}
                 starRatedColor="#FFD700"
                 starEmptyColor="#E4E5E9"
                 starHoverColor="#FFD700"
                 starDimension="30px"
                 starSpacing="5px"
-                changeRating={setRating}
+                changeRating={setNote}
               />
             </div>
             <button type="submit" className="create-button">
@@ -105,6 +104,16 @@ const CreateReview = () => {
 };
 
 export default CreateReview;
+
+
+
+
+
+
+
+
+
+
 
 
 

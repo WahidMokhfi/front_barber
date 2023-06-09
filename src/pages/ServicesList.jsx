@@ -52,16 +52,16 @@ const ServicesList = () => {
 
   return (
     <>
-      <Header className="header-prefix" />
-      <div className="prefix-body">
-        <div className="services-list-container services-prefix">
+      <Header className="services-list-header-prefix" />
+      <div className="services-list-prefix-body">
+        <div className="services-list-container services-list-prefix">
           <h2 className="services-list-title">Liste des services</h2>
-          <div className="glass-container">
+          <div className="services-list-glass-container">
             <ul className="services-list-ul">
               {services.map((service) => (
                 <li key={service.id} className="services-list-item">
                   <button
-                    className={`service-link ${
+                    className={`services-list-service-link ${
                       selectedService === service ? "active" : ""
                     }`}
                     onClick={() => handleServiceClick(service)}
@@ -69,22 +69,22 @@ const ServicesList = () => {
                     {service.name}
                   </button>
                   {selectedService === service && (
-                    <div className="selected-service">
+                    <div className="services-list-selected-service">
                       <h3>Détails du service</h3>
-                      <p className="service-detail">ID : {service.id}</p>
-                      <p className="service-detail">Nom : {service.name}</p>
-                      <p className="service-detail">
+                      <p className="services-list-service-detail">ID : {service.id}</p>
+                      <p className="services-list-service-detail">Nom : {service.name}</p>
+                      <p className="services-list-service-detail">
                         Description : {service.description}
                       </p>
-                      <p className="service-detail">Prix : {service.price}</p>
+                      <p className="services-list-service-detail">Prix : {service.price}</p>
                     </div>
                   )}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="button-container">
-            <button className="retour-button" onClick={handleRetourClick}>
+          <div className="services-list-button-container">
+            <button className="services-list-retour-button" onClick={handleRetourClick}>
               Retour
             </button>
           </div>
@@ -95,6 +95,7 @@ const ServicesList = () => {
 };
 
 export default ServicesList;
+
 
 
 
