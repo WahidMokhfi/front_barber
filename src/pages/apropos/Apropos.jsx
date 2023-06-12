@@ -14,15 +14,16 @@ function Apropos() {
           <img src="img/banner2.jpg" alt="" />
         </div>
         <div className="content">
-          <h3 className="title">Lorem ipsum dolor sit amet.</h3>
+          <h3 className="title">Votre salon de référence depuis 2019</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mauris dolor, gravida a varius blandit, auctor
-            eget purus. Phasellus scelerisque sapien sit amet mauris laoreet, eget scelerisque nunc cursus. Duis
-            ultricies malesuada leo vel aliquet. Curabitur rutrum porta dui eget mollis. Nullam lacinia dictum auctor.
+              Découvrez l'expertise de votre salon Barber Bègles. Nous vous proposons des coupes de cheveux soignées, des
+              styles de barbe impeccables et des soins du visage de qualité supérieure. Nos barbers sont là pour
+              vous offrir des services accessibles à tous, sans compromis sur la qualité.
           </p>
           <p>
-            aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius
-            natoque penatibus et magnis dis parturient montes.
+              Profitez d'un cadre moderne et accueillant, où vous pourrez vous détendre et bénéficier de soins personnalisés.
+              Nous mettons à votre disposition notre savoir-faire et nos produits de haute qualité pour vous garantir une
+              expérience de barber premium.
           </p>
           <div className="icons-container">
             <div className="icons">
@@ -46,3 +47,5 @@ function Apropos() {
 }
 
 export default Apropos;
+
+

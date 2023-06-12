@@ -1,58 +1,56 @@
-.footer .box-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  gap: 2rem;
+.footer {
+  background-color: var(--footer-bg-color);
+  padding: 2rem 0;
+  color: var(--white);
 }
 
-.footer .box {
+.box-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.box {
+  flex-basis: calc(50% - 1rem);
+  padding: 0 1rem;
   text-align: center;
 }
 
-.footer .box h3 {
+.box h3 {
   font-size: 2.2rem;
   text-transform: capitalize;
   color: var(--primary-color);
   padding: 1rem 0;
 }
 
-.footer .box p {
+.box p {
   font-size: 1.5rem;
   line-height: 2;
   color: var(--black);
   padding: 1rem 0;
+  margin-bottom: 1rem;
 }
 
-.footer .box .share {
-  margin-top: 1rem;
+.share {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.footer .box .share a {
+.share a {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 4.5rem;
   width: 4.5rem;
   line-height: 4.5rem;
-  border-radius: 50%;
   font-size: 2.5rem;
-  background-color: var(--primary-color);
-  color: var(--white);
   margin-right: 0.3rem;
   text-align: center;
   text-decoration: none;
 }
 
-.footer .box .share a:hover {
-  color: var(--white);
-  text-decoration: none;
-  background-color: var(--black);
-}
-
-.footer .box .link {
+.link {
   font-size: 1.7rem;
   line-height: 2;
   color: var(--primary-color);
@@ -61,12 +59,12 @@
   text-decoration: none;
 }
 
-.footer .box .link:hover {
+.link:hover {
   color: var(--black);
   text-decoration: none;
 }
 
-.footer .box .email {
+.email {
   width: 100%;
   padding: 1.2rem 1.4rem;
   font-size: 1.6rem;
@@ -74,188 +72,53 @@
   margin-bottom: 1rem;
 }
 
-.footer .credit {
+.footer-credit {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 2rem;
+  font-size: 1.6rem;
   margin-top: 3rem;
-  padding-top: 3rem;
-  font-size: 2rem;
-  text-transform: capitalize;
-  color: #444;
-  border-top: 0.1rem solid var(--black);
+  padding: 0 1rem;
 }
 
-.footer .credit span {
-  color: var(--black);
-  margin-right: 1rem;
-}
-
-.footer .credit .rights {
-  margin-right: 1rem;
-}
-
-.footer .credit .cgv-cgu,
-.footer .credit .data {
-  margin-right: 1rem;
-}
-
-.footer .credit a {
-  text-decoration: none;
+.footer-credit a,
+.footer-credit .credit-item {
   color: var(--primary-color);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transition: color 0.3s;
 }
 
-@media (max-width: 991px) {
-  .footer .box-container {
-    justify-content: center;
-  }
+.footer-credit a:hover,
+.footer-credit .credit-item:hover {
+  color: var(--black);
+}
 
-  .footer .box {
-    flex-basis: 45%;
-    max-width: 18rem;
-    margin: 1rem;
-  }
-
-  .footer .box h3 {
-    font-size: 2rem;
-    padding: 0.8rem 0;
-  }
-
-  .footer .box p {
-    font-size: 1.4rem;
-    line-height: 1.8;
-    padding: 0.8rem 0;
-  }
-
-  .footer .box .share {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .footer .box .share a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 4rem;
-    width: 4rem;
-    line-height: 4rem;
-    font-size: 2rem;
-    margin-right: 0.2rem;
-  }
-  
-
-  .footer .box .link {
-    font-size: 1.3rem;
-    line-height: 1.6rem;
-    padding: 0.4rem 0;
-  }
-
-  .footer .box .email {
-    padding: 1rem 1.2rem;
-    font-size: 1.2rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .footer .credit {
-    font-size: 1.8rem;
-    padding-top: 2rem;
-  }
+.separator {
+  margin: 0 0.5rem;
 }
 
 @media (max-width: 768px) {
-  .footer .box {
-    flex-basis: 90%;
-    max-width: 16rem;
-    margin: 1rem;
+  .box {
+    flex-basis: 100%;
   }
-
-  .footer .box h3 {
-    font-size: 1.8rem;
-    padding: 0.6rem 0;
+  
+  .share a {
+    font-size: 3rem; 
   }
-
-  .footer .box p {
-    font-size: 1.3rem;
-    line-height: 1.6;
-    padding: 0.6rem 0;
-  }
-
-  .footer .box .share a {
-    height: 3.5rem;
-    width: 3.5rem;
-    line-height: 3.5rem;
-    font-size: 1.8rem;
-    margin-right: 0.2rem;
-  }
-
-  .footer .box .link {
-    font-size: 1.3rem;
-    line-height: 1.6rem;
-    padding: 0.3rem 0;
-  }
-
-  .footer .box .email {
-    padding: 0.9rem 1.1rem;
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
-  }
-
-  .footer .credit {
-    font-size: 1.6rem;
-    padding-top: 1.6rem;
-  }
-}
-
-@media (max-width: 450px) {
-  .footer .box {
-    flex-basis: 90%;
-    max-width: 12rem;
-    margin: 1rem;
-  }
-
-  .footer .box h3 {
-    font-size: 1.6rem;
-    padding: 0.4rem 0;
-  }
-
-  .footer .box p {
-    font-size: 1.2rem;
-    line-height: 1.4;
-    padding: 0.4rem 0;
-  }
-
-  .footer .box .share a {
-    height: 3rem;
-    width: 3rem;
-    line-height: 3rem;
-    font-size: 1.4rem;
-    margin-right: 0.1rem;
-  }
-
-  .footer .box .link {
-    font-size: 1.2rem;
-    line-height: 1.4rem;
-    padding: 0.2rem 0;
-  }
-
-  .footer .box .email {
-    padding: 0.7rem 0.9rem;
-    font-size: 1rem;
-    margin-bottom: 0.2rem;
-  }
-
-  .footer .credit {
-    font-size: 1.4rem;
-    padding-top: 1.4rem;
+  
+  .footer-credit {
+    font-size: 1.8rem; 
+    margin-top: 2rem; 
+    text-align: center; 
   }
 }
 
 
 
-/* Mentions Légales     Créé Par WahidM    | Tous Droits Réservés    CGV/CGU    Données Personnelles */
+
+
+
 
 
 
