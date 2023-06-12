@@ -15,28 +15,28 @@ const AdminHome = () => {
               <h2>Create a service</h2>
               <p>Créez un service.</p>
               <Link to="/admin/create-service" className="admin-card-link">
-                CREATE
+                CREATE / POST
               </Link>
             </div>
             <div className="admin-card">
               <h2>Read services</h2>
               <p>Consultez la liste et les Détails.</p>
               <Link to="/admin/services" className="admin-card-link">
-                READ
+                READ / GET
               </Link>
             </div>
             <div className="admin-card">
               <h2>Update a service</h2>
               <p>Modifiez un service.</p>
               <Link to="/admin/update-service/:id" className="admin-card-link">
-                UPDATE
+                UPDATE / PUT
               </Link>
             </div>
             <div className="admin-card">
               <h2>Delete a service</h2>
               <p>Supprimez un service.</p>
               <Link to="/admin/delete-service/:id" className="admin-card-link">
-                DELETE
+                DELETE 
               </Link>
             </div>
           </div>
@@ -45,21 +45,21 @@ const AdminHome = () => {
               <h2>Create a user</h2>
               <p>Créez un nouvel utilisateur.</p>
               <Link to="/admin/create-user" className="admin-card-link">
-                CREATE
+                CREATE / POST
               </Link>
             </div>
             <div className="admin-card">
               <h2>Read users</h2>
               <p>Consultez la liste et les Détails.</p>
               <Link to="/admin/users" className="admin-card-link">
-                READ
+                READ / GET
               </Link>
             </div>
             <div className="admin-card">
               <h2>Update a user</h2>
               <p>Modifiez les informations d'un utilisateur.</p>
               <Link to="/admin/update-user/:id" className="admin-card-link">
-                UPDATE
+                UPDATE / PUT
               </Link>
             </div>
             <div className="admin-card">
