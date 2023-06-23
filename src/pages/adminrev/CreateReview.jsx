@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Header from "../layout/Header";
+import Header from "../../layout/Header";
 import { toast } from "react-toastify";
-import "./createuser.css";
+import "./createreview.css";
 import StarRatings from "react-star-ratings";
 
 const CreateReview = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../layout/Header";
+import Header from "../../layout/Header";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import './deleteuser.css';
@@ -99,3 +99,4 @@ const DeleteUser = () => {
 };
 
 export default DeleteUser;
+

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../layout/Header";
+import Header from "../../layout/Header";
 import { toast } from "react-toastify";
 import "./createuser.css";
 import Select from 'react-select';
@@ -9,6 +9,8 @@ const CreateUser = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [selectedRole, setSelectedRole] = useState(null);
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,6 +41,8 @@ const CreateUser = () => {
           username: username,
           password: password,
           role: selectedRole.value,
+          email: email,
+          phone_number: phoneNumber,
         }),
       });
 
@@ -96,6 +100,26 @@ const CreateUser = () => {
               />
             </div>
             <div className="admin-create-user-field">
+              <label htmlFor="email">Email :</label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
+              />
+            </div>
+            <div className="admin-create-user-field">
+              <label htmlFor="phone_number">Numéro de téléphone :</label>
+              <input
+                type="tel"
+                id="phone_number"
+                value={phoneNumber}
+                onChange={(event) => setPhoneNumber(event.target.value)}
+                required
+              />
+            </div>
+            <div className="admin-create-user-field">
               <label htmlFor="role">Rôle :</label>
               <Select
                 id="role"
@@ -136,6 +160,7 @@ const CreateUser = () => {
 };
 
 export default CreateUser;
+
 
 
 

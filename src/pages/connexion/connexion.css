@@ -5,18 +5,8 @@
   justify-content: center;
   height: 100vh;
   position: relative;
-}
-
-.form-container-custom::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   background-image: url('http://localhost:3000/img/outilsBarber.jpg');
   background-size: cover;
-  filter: blur(5px) brightness(0.5) grayscale(100%);
 }
 
 .form-custom {
@@ -116,10 +106,10 @@
 /* Custom styles for ToastContainer */
 .Toastify__toast {
   font-size: 1.8rem;
-  font-weight: bold; /* Texte plus épais */
+  font-weight: bold;
   border-radius: 5px;
-  padding: 15px; /* Augmenter la taille du contenu du toast */
-  color: #000000; /* Texte noir */
+  padding: 15px;
+  color: #000000;
 }
 
 .Toastify__toast-body {
@@ -128,17 +118,20 @@
 }
 
 .Toastify__toast--success {
-  background-color: #32CD32; /* Fond vert */
+  background-color: #32CD32;
 }
 
 .Toastify__toast--error {
-  background-color: #FF0000; /* Fond rouge */
+  background-color: #FF0000;
 }
 
 .Toastify__toast--success .Toastify__toast-body svg,
 .Toastify__toast--error .Toastify__toast-body svg {
-  fill: #000000; /* Couleur des icônes en noir */
+  fill: #000000;
 }
+
+
+
 
 
 

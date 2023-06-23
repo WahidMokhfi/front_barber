@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Header from "../layout/Header";
+import Header from "../../layout/Header";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import "./servicedetails.css";
 
 const ServiceDetails = () => {
   const { id } = useParams();

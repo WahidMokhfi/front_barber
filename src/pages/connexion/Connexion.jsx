@@ -18,6 +18,8 @@ function Connexion() {
     const form = event.target;
     const enteredUsername = form.elements.username.value;
     const password = form.elements.password.value;
+    const email = form.elements.email ? form.elements.email.value : null;
+    const phoneNumber = form.elements.phone_number ? form.elements.phone_number.value : null;
     const endpoint = isLogin
       ? "http://localhost:3005/api/users/login"
       : "http://localhost:3005/api/users/signup";
@@ -31,6 +33,8 @@ function Connexion() {
         body: JSON.stringify({
           username: enteredUsername,
           password: password,
+          email: email,
+          phone_number: phoneNumber,
         }),
       });
 
@@ -69,11 +73,19 @@ function Connexion() {
           <input type="text" id="username" name="username" required autoComplete="username" />
           <label htmlFor="password">Mot de passe :</label>
           <input type="password" id="password" name="password" required autoComplete="current-password" />
+          {!isLogin && (
+            <>
+              <label htmlFor="email">Email :</label>
+              <input type="email" id="email" name="email" required autoComplete="email" />
+              <label htmlFor="phone_number">Numéro de téléphone :</label>
+              <input type="tel" id="phone_number" name="phone_number" required autoComplete="tel" />
+            </>
+          )}
           <button type="submit">{isLogin ? "Se connecter" : "S'inscrire"}</button>
         </form>
         <div className="switch-form-custom">
           <span>{isLogin ? "Pas encore de compte ?" : "Déjà un compte ?"}</span>
-          <button onClick={handleSwitchForm}>{isLogin ? "S'inscrire" : "Se connecter"}</button>
+          <button type="button" onClick={handleSwitchForm}>{isLogin ? "S'inscrire" : "Se connecter"}</button>
         </div>
       </div>
     </>
@@ -81,6 +93,10 @@ function Connexion() {
 }
 
 export default Connexion;
+
+
+
+
 
 
 

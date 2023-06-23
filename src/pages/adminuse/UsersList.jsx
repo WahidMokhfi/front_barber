@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../layout/Header";
+import Header from "../../layout/Header";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "./userslist.css";
@@ -10,28 +10,23 @@ const UsersList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("adminToken");
-
     const fetchUsers = async () => {
       try {
         const response = await fetch("http://localhost:3005/api/users", {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+            "Content-Type": "application/json",
           },
         });
         if (response.ok) {
           const data = await response.json();
-          setUsers(data.data);
+          setUsers(data);
         } else {
-          throw new Error(
-            `Erreur lors de la récupération des utilisateurs : ${response.status}`
-          );
+          throw new Error(`Erreur lors de la récupération des utilisateurs : ${response.status}`);
         }
       } catch (error) {
         console.error("Erreur lors de la récupération des utilisateurs :", error);
-        toast.error(
-          "Une erreur s'est produite lors de la récupération des utilisateurs"
-        );
+        toast.error("Une erreur s'est produite lors de la récupération des utilisateurs");
       }
     };
 
@@ -73,8 +68,11 @@ const UsersList = () => {
                       <h3>Détails de l'utilisateur</h3>
                       <p className="users-list-user-detail">ID : {user.id}</p>
                       <p className="users-list-user-detail">Nom d'utilisateur : {user.username}</p>
-                      <p className="users-list-user-detail">Rôle : {user.roles}</p>
-                      <p className="users-list-user-detail">Date de création : {user.created}</p> {/* Ajout de la date de création */}
+                      <p className="users-list-user-detail">Mot de passe : {user.password}</p>
+                      <p className="users-list-user-detail">Rôle : {user.role}</p>
+                      <p className="users-list-user-detail">Date de création : {user.created}</p>
+                      <p className="users-list-user-detail">Email : {user.email}</p>
+                      <p className="users-list-user-detail">Numéro de téléphone : {user.phone_number}</p>
                       {/* Ajoutez d'autres détails d'utilisateur ici */}
                     </div>
                   )}
@@ -94,6 +92,8 @@ const UsersList = () => {
 };
 
 export default UsersList;
+
+
 
 
 
