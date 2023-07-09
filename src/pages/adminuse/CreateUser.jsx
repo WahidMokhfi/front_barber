@@ -38,10 +38,10 @@ const CreateUser = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: username,
-          password: password,
+          username,
+          password,
           role: selectedRole.value,
-          email: email,
+          email,
           phone_number: phoneNumber,
         }),
       });
@@ -75,83 +75,64 @@ const CreateUser = () => {
       <Header />
       <div className="admin-create-user-body">
         <div className="admin-create-user-container">
-          <h2 className="title">Créer un utilisateur</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="admin-create-user-field">
-              <label htmlFor="username">Nom d'utilisateur :</label>
-              <input
-                type="text"
-                id="username"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
-                required
-                autoComplete="username"
-              />
+          <h2>Créer un utilisateur</h2>
+          <form onSubmit={handleSubmit} className="admin-create-user-form">
+            <label htmlFor="username">Nom d'utilisateur :</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              autoComplete="username"
+            />
+            <label htmlFor="password">Mot de passe :</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete="new-password"
+            />
+            <label htmlFor="role">Rôle :</label>
+            <Select
+              id="role"
+              name="role"
+              value={selectedRole}
+              onChange={(selectedOption) => setSelectedRole(selectedOption)}
+              options={[
+                { value: "admin", label: "Admin" },
+                { value: "user", label: "Utilisateur" },
+              ]}
+              required
+            />
+            <label htmlFor="email">Email :</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+            />
+            <label htmlFor="phone_number">Numéro de téléphone :</label>
+            <input
+              type="tel"
+              id="phone_number"
+              name="phone_number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              autoComplete="tel"
+            />
+            <div className="admin-create-user-buttons">
+              <button type="submit">Créer</button>
+              <button type="button" onClick={handleRetourClick}>
+                Retour
+              </button>
             </div>
-            <div className="admin-create-user-field">
-              <label htmlFor="password">Mot de passe :</label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                required
-                autoComplete="new-password"
-              />
-            </div>
-            <div className="admin-create-user-field">
-              <label htmlFor="email">Email :</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                required
-              />
-            </div>
-            <div className="admin-create-user-field">
-              <label htmlFor="phone_number">Numéro de téléphone :</label>
-              <input
-                type="tel"
-                id="phone_number"
-                value={phoneNumber}
-                onChange={(event) => setPhoneNumber(event.target.value)}
-                required
-              />
-            </div>
-            <div className="admin-create-user-field">
-              <label htmlFor="role">Rôle :</label>
-              <Select
-                id="role"
-                value={selectedRole}
-                options={[
-                  { value: 'user', label: 'Utilisateur' },
-                  { value: 'admin', label: 'Administrateur' }
-                ]}
-                onChange={setSelectedRole}
-                required
-                styles={{
-                  control: (provided) => ({
-                    ...provided,
-                    fontSize: '18px'
-                  }),
-                  singleValue: (provided) => ({
-                    ...provided,
-                    fontSize: '18px'
-                  }),
-                  menu: (provided) => ({
-                    ...provided,
-                    fontSize: '18px'
-                  })
-                }}
-              />
-            </div>
-            <button type="submit" className="create-button">
-              Créer
-            </button>
-            <button className="retour-button" onClick={handleRetourClick}>
-              Retour
-            </button>
           </form>
         </div>
       </div>
@@ -160,6 +141,10 @@ const CreateUser = () => {
 };
 
 export default CreateUser;
+
+
+
+
 
 
 

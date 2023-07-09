@@ -43,15 +43,16 @@ function App() {
       <ToastContainer position="top-right" />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/accueil" element={<Home />} />
 
-        <Route path="/" element={<Accueil />} />
+        <Route path="/accueil" element={<Accueil />} />
         <Route path="/apropos" element={<Apropos />} />
         <Route path="/serv" element={<Services />} />
         <Route path="/avis" element={<Avis />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/deconnexion" element={<Deconnexion />} />
-        <Route path="create-review" element={<CreateReview />} />
+        <Route path="/create-review/:service_id" element={<CreateReview />} />
 
         <Route path="/admin/" element={<AdminHome />} />
         <Route path="/admin/create-service" element={<CreateService />} />
@@ -66,7 +67,7 @@ function App() {
         <Route path="/admin/update-user/:id" element={<UpdateUser />} />
         <Route path="/admin/delete-user/:id" element={<DeleteUser />} />
 
-        <Route path="/admin/create-review" element={<CreateReview />} />
+        <Route path="/admin/create-review/:service_id" element={<CreateReview />} />
         <Route path="/admin/reviews" element={<ReviewsList />} />
         <Route path="/admin/reviews/:id" element={<ReviewDetails />} />
         <Route path="/admin/update-review/:id" element={<UpdateReview />} />
@@ -84,6 +85,7 @@ function App() {
 }
 
 export default App;
+
 
 
 

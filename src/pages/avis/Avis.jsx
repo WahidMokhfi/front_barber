@@ -1,82 +1,87 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import Header from '../../layout/Header';
 import '../avis/avis.css';
-import Header from '../../layout/Header';
 
 function Avis() {
   const navigate = useNavigate();
+  const [avis, setAvis] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3005/api/reviews')
+      .then(response => response.json())
+      .then(data => setAvis(data.data))
+      .catch(error => console.error('Erreur lors de la récupération des avis :', error));
+  }, []);
 
   const handlePosterAvis = () => {
     navigate('/connexion');
   };
 
+  const handleRetourAccueil = () => {
+    navigate('/accueil');
+  };
+
   return (
     <>
-      <Header />
-      <section className="avis" id="avis">
-        <h2 className="heading">Avis</h2>
-        <div className="box-container">
-          <div className="box">
-            <img src="img/icon-avis.png" alt="" className="quote" />
-            <p>
-                Une équipe compétente et attentionnée. Les coupes de cheveux sont toujours
-                impeccables et les conseils personnalisés sont très appréciés. Je recommande vivement Barber Bègles pour un
-                service de qualité supérieure.
-            </p>
-            <img src="img/testimonial-1.jpg" className="user" alt="" />
-            <h3>John Doe</h3>
-            <div className="stars">
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star-half-alt"></i>
+    {/* <Header /> */}
+    <section className="avis" id="avis">
+      <h2 className="heading">Avis</h2>
+      <div className="box-container">
+        {avis.length > 0 ? (
+          avis.map((avisItem, index) => (
+            <div className="box" key={index}>
+              <img src="img/icon-avis.png" alt="" className="quote" />
+              <p>{avisItem.content}</p>
+              <img src={avisItem.User.avatar} className="user" alt="" />
+              <h3>{avisItem.User.username}</h3>
+              <div className="stars">
+                {Array.from({ length: avisItem.rating }, (_, i) => (
+                  <i className="fas fa-star" key={i}></i>
+                ))}
+                {avisItem.rating % 1 !== 0 && (
+                  <i className="fas fa-star-half-alt" key="half"></i>
+                )}
+              </div>
             </div>
-          </div>
-          <div className="box">
-            <img src="img/icon-avis.png" alt="" className="quote" />
-            <p>
-              J'ai été agréablement surpris par l'excellent service et l'ambiance conviviale chez Barber Bègles. Le barbier a su
-              comprendre exactement ce que je voulais et le résultat a dépassé mes attentes. Je recommande vivement cet endroit
-              pour une expérience de barber de qualité.
-            </p>
-            <img src="img/testimonial-2.jpg" className="user" alt="" />
-            <h3>John Doe</h3>
-            <div className="stars">
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star-half-alt"></i>
-            </div>
-          </div>
-          <div className="box">
-            <img src="img/icon-avis.png" alt="" className="quote" />
-            <p>
-              Un super salon ! Toujours impressionné par l'attention aux détails et le professionnalisme de
-              l'équipe. Les produits utilisés sont de grande qualité et les résultats sont toujours impeccables. Je suis un
-              client fidèle et je recommande vivement Barber Bègles.
-            </p>
-            <img src="img/review-1.png" className="user" alt="" />
-            <h3>John Doe</h3>
-            <div className="stars">
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star-half-alt"></i>
-            </div>
-          </div>
-        </div>
+          ))
+        ) : (
+          <div>Aucun avis disponible</div>
+        )}
+      </div>
 
-        <div className="text-align:center">
-          <input type="submit" value="Poster un avis" className="btn" onClick={handlePosterAvis} />
-        </div>
-      </section>
+      <div className="text-align:center">
+        <input
+          type="submit"
+          value="Poster un avis"
+          className="btn"
+          onClick={handlePosterAvis}
+        />
+      </div>
+      <div className="text-align:center">
+        <button className="btn btn-return" onClick={handleRetourAccueil}>
+          Retour à l'accueil
+        </button>
+      </div>
+    </section>
     </>
   );
 }
 
 export default Avis;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
