@@ -1,0 +1,65 @@
+
+.contact {
+  text-align: center;
+  color: black;
+  background-size: cover;
+  background-position: center;
+}
+
+.contact .contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.contact .map-section {
+  flex: 1 1 calc(50% - 1rem); /* Moitié de la largeur pour la carte */
+  border-radius: 10px; /* Border radius pour adoucir les coins */
+  overflow: hidden; /* Cacher le contenu qui dépasse */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Effet de relief avec ombre plus prononcée */
+}
+
+.contact .map-section iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.contact .image-section {
+  flex: 1 1 calc(50% - 1rem); /* Moitié de la largeur pour l'image */
+}
+
+.contact .image-section img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+@media (max-width: 450px) {
+  .contact .row form h3 {
+    font-size: 1.8rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .contact .row form .inputBox input[type="text"],
+  .contact .row form .inputBox input[type="email"] {
+    font-size: 1.3rem;
+    padding: 0.8rem;
+  }
+
+  .contact .row form .inputBox textarea {
+    font-size: 1.3rem;
+    padding: 1.5rem;
+  }
+
+  .contact .row .image img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+}
+
+  
+  
+  
+  

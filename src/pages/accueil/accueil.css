@@ -1,0 +1,113 @@
+.accueil {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: url("http://localhost:3000/img/banner1.JPG") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.accueil .content {
+  max-width: 60rem;
+}
+
+.accueil .content span {
+  font-size: 4rem;
+  letter-spacing: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: var(--white);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+.accueil .content h1 {
+  color: var(--white);
+  font-size: 8rem;
+  line-height: 8rem;
+  font-weight: 900;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .accueil .content {
+    max-width: 100%;
+    padding: 0 2rem; 
+    text-align: center; 
+  }
+
+  .accueil .content span {
+    font-size: 3rem;
+    padding-bottom: 0.3rem;
+  }
+
+  .accueil .content h1 {
+    font-size: 6rem;
+    line-height: 6rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,115 @@
+/* avis.css */
+
+/* Réinitialisation des marges par défaut du body */
+body {
+  margin: 0;
+}
+
+/* Styles pour la section "Avis" */
+
+.avis {
+  position: relative;
+  background-image: url('http://localhost:3000/img/outilsBarber.jpg');
+  background-size: cover;
+  text-align: center;
+}
+
+.avis .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 1.5rem;
+}
+
+.avis .box-container .box {
+  border: var(--border);
+  text-align: center;
+  padding: 3rem 2rem;
+  background-color: var(--white); /* Ajout de couleur de fond */
+  color: var(--black); /* Ajout de couleur du texte */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Ajout de l'effet d'ombre */
+  font-family: "Roboto", sans-serif; /* Utilisation de la police Roboto */
+}
+
+.avis .box-container .box .quote {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 1rem;
+}
+
+.avis .box-container .box h3 {
+  padding: 1rem 0;
+  font-size: 2rem;
+  text-transform: capitalize;
+}
+
+.avis .box-container .box .stars i {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.avis .btn {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.avis .btn:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.avis .btn-return {
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  /* Modifier les styles pour les appareils mobiles */
+  .avis .box-container {
+    grid-template-columns: 1fr;
+  }
+
+  .avis .box-container .box {
+    padding: 2rem 1rem;
+  }
+
+  .avis .box-container .box h3 {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Modifier les styles pour les appareils mobiles de petite taille */
+  .avis .box-container .box {
+    padding: 1.5rem 0.5rem;
+    max-width: 20rem;
+    margin: 0 auto;
+  }
+
+  .avis .box-container .box h3 {
+    font-size: 2rem;
+  }
+}
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  

@@ -1,0 +1,87 @@
+.apropos {
+    background-image: url("http://localhost:3000/img/apropos-left.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+
+@media (max-width: 991px) {
+    .apropos {
+        background-size: cover;
+        background-image: url("http://localhost:3000/img/apropos-left.png");
+    }
+}
+
+@media (max-width: 768px) {
+    .apropos {
+        background-size: cover;
+        background-image: url("http://localhost:3000/img/apropos-left.png");
+    }
+}
+
+@media (max-width: 450px) {
+    .apropos {
+        background-size: cover;
+        background-image: url("http://localhost:3000/img/apropos-left.png");
+    }
+}
+
+
+
+
+.apropos .row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.apropos .row .image{
+    flex:1 1 39rem;
+}
+
+.apropos .row .image img{
+    width: 100%;
+}
+.apropos .row .content{
+    flex:1 1 51rem;
+    padding:5rem;
+}
+
+.apropos .row .content h3{
+    font-size: 3rem;
+    color: var(--white);
+}
+
+.apropos .row .content p{
+    font-size: 1.6rem;
+    color: var(--white);
+    padding:1rem 0;
+    line-height: 1.8;
+}
+
+.apropos .content .icons-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap:2rem;
+    margin-top: 3rem;
+ }
+ 
+ .apropos .content .icons-container .icons{
+    flex:1 1 16rem;
+    text-align: center;
+    background: var(--light-bg);
+    padding:3rem 2rem;
+ }
+ 
+ .apropos .content .icons-container .icons img{
+    height: 5rem;
+    border-radius: 15px;
+}
+ 
+.apropos .content .icons-container .icons h3{
+    padding-top: 1rem;
+    font-size: 1.6rem;
+    color:#444;
+    font-weight: normal;
+    text-transform: capitalize;
+ }
+  

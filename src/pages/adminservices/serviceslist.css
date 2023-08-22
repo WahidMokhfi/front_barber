@@ -1,0 +1,197 @@
+/* serviceslist.css */
+.services-list-prefix-body {
+  margin: 0;
+  padding: 0;
+  background-image: url('http://localhost:3000/img/outilsBarber.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; 
+}
+
+.services-list-header-prefix {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--box-shadow);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--main-color);
+  z-index: 1000;
+}
+
+.services-list-container {
+  padding: 20px;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.services-list-container h2.services-list-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: black;
+  font-size: 24px;
+}
+
+.services-list-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.services-list-item {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.services-list-service-link {
+  display: block;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+/* Effet de hover sur le fond du lien */
+.services-list-service-link:hover {
+  background-color: #000;
+}
+
+.services-list-service-link.active {
+  background-color: #000;
+}
+
+.services-list-selected-service {
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.services-list-selected-service h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.services-list-service-detail {
+  font-size: 14px;
+}
+
+.services-list-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.services-list-action-button {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.services-list-update-button {
+  background-color: #ffd700; 
+  color: #000;
+}
+
+.services-list-delete-button {
+  background-color: #ff0000; 
+  color: #fff;
+}
+
+.services-list-button-icon {
+  margin-right: 5px;
+}
+
+.services-list-retour-button {
+  padding: 10px;
+  background-color: #333;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.services-list-retour-button:hover {
+  background-color: #555;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

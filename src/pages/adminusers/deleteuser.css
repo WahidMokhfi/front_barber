@@ -1,0 +1,106 @@
+/* body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .admin-delete-user-body {
+    background-image: url('http://localhost:3000/img/outilsBarber.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .admin-delete-user-container {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50vh;
+  }
+  
+  .admin-delete-user-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .admin-delete-user-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .admin-delete-user-container label {
+    margin-bottom: 10px;
+  }
+  
+  .admin-delete-user-container input,
+  .admin-delete-user-container textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .user-heading {
+    font-size: 24px;
+  }
+  
+  .admin-delete-user-container label,
+  .admin-delete-user-container input,
+  .admin-delete-user-container textarea,
+  .admin-delete-user-container button {
+    font-size: 18px;
+  }
+  
+  .admin-delete-user-container button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .admin-delete-user-container button:hover {
+    background-color: #555;
+  }
+  
+  .retour-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+  }
+  
+  .retour-button:hover {
+    background-color: #000;
+  }
+  
+  .delete-button {
+    display: block;
+    width: 200px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    margin-top: 20px;
+  } */
+  

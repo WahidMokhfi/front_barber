@@ -1,0 +1,37 @@
+/* .user-details {
+    margin: 0;
+    padding: 0;
+    background-image: url('http://localhost:3000/img/outilsBarber.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .user-details h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+    font-size: 24px;
+  }
+  
+  .user-details > div {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  .user-details h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .user-details p {
+    font-size: 14px;
+  } */
+  
