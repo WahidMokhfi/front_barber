@@ -6,9 +6,11 @@ import "./createservice.css";
 const CreateService = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [service_name, setServiceName] = useState(""); // Add service_name state
   const [price, setPrice] = useState("");
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState("");
+  const [categoryName, setCategoryName] = useState("");
   const navigate = useNavigate();
 
   const fetchCategories = useCallback(async () => {
@@ -47,8 +49,10 @@ const CreateService = () => {
       body: JSON.stringify({
         name: name,
         description: description,
+        service_name: service_name, // Include service_name in the request body
         price: price,
         category_id: categoryId,
+        category_name: categoryName,
       }),
     })
       .then((response) => {
@@ -87,6 +91,13 @@ const CreateService = () => {
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Description du service"
           />
+          <label>Nom du service (service_name)</label>
+          <input
+            type="text"
+            value={service_name}
+            onChange={(e) => setServiceName(e.target.value)}
+            placeholder="Nom du service (service_name)"
+          />
           <label>Prix du service</label>
           <input
             type="text"
@@ -95,7 +106,10 @@ const CreateService = () => {
             placeholder="Prix du service"
           />
           <label>Catégorie</label>
-          <select onChange={(e) => setCategoryId(e.target.value)}>
+          <select onChange={(e) => {
+            setCategoryId(e.target.value);
+            setCategoryName(e.target.options[e.target.selectedIndex].text);
+          }}>
             <option value="">Sélectionner une catégorie</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
@@ -114,6 +128,8 @@ const CreateService = () => {
 };
 
 export default CreateService;
+
+
 
 
 
