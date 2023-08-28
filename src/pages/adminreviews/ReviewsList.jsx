@@ -81,7 +81,7 @@ function ReviewsList() {
             reviews.map((review, index) => (
               <div className="box" key={index}>
                 <div className="quote-container">
-                  <img src="img/icon-avis.png" alt="" className="quote" />
+                <img src="/img/icon-avis.png" alt="" className="quote" />
                 </div>
                 <p>{review.content}</p>
                 <img src={review.User.avatar} className="user" alt="" />

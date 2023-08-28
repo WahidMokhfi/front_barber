@@ -39,18 +39,18 @@ body {
   max-width: 700px;
   width: 100%;
   margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(176, 183, 221, 0.699); /* Légèrement opaque */
   backdrop-filter: blur(10px);
   border-radius: 10px;
   margin-top: 20px;
   position: relative;
   z-index: 1;
+  color: black; /* Texte en noir */
 }
 
 .reviews-list h2.heading {
   text-align: center;
   margin-bottom: 20px;
-  color: black;
   font-size: 24px;
 }
 
@@ -63,14 +63,15 @@ body {
 
 .box {
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   text-align: center;
   width: 300px;
+  backdrop-filter: blur(10px); /* Ajout de l'effet glassmorphism */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Bordure légère */
 }
-
 .box p {
   margin: 10px 0;
+  color: black; /* Texte en noir */
 }
 
 .reviews-list .box-container .box .quote-container {
@@ -83,6 +84,7 @@ body {
 .reviews-list .box-container .box .quote {
   width: 30px;
   height: 30px;
+  filter: invert(0); /* L'image quote en noir */
 }
 
 .stars {
@@ -95,27 +97,33 @@ body {
   margin-right: 3px;
 }
 
+
 .reviews-list-action-button {
   display: inline-block;
   padding: 8px 12px;
   margin-top: 10px;
+  margin-right: 5px; /* Espacement droit entre les boutons */
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Ajout de la transition pour l'effet */
   font-size: 14px;
   text-decoration: none;
   color: white;
+  background-color: #2196F3; /* Couleur bleue */
 }
 
 .reviews-list-action-button:hover {
-  background-color: #555;
-}
-
-.reviews-list--button {
-  background-color: #2196F3; /* Nouvelle couleur bleue */
+  background-color: #0970c5; /* Variation plus foncée */
+  transform: scale(1.05); /* Légèrement agrandi au survol */
 }
 
 .reviews-list-delete-button {
-  background-color: #f44336;
+  background-color: #f44336; /* Couleur rouge */
+  transition: background-color 0.3s ease; /* Transition de couleur en cas de survol */
+}
+
+.reviews-list-delete-button:hover {
+  background-color: #eb1919; /* Variation plus foncée pour le survol */
+  transform: scale(1.05); /* Légèrement agrandi au survol */
 }
 
 .btn-return {
@@ -132,6 +140,8 @@ body {
 .btn-return:hover {
   background-color: #555;
 }
+
+
 
 
 
