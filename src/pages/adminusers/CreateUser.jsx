@@ -14,6 +14,9 @@ const CreateUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("Selected role:", roles); // Debugging line
+
     try {
       const newUser = {
         username,
@@ -36,11 +39,14 @@ const CreateUser = () => {
 
       if (response.ok) {
         const data = await response.json();
-        toast.success(data.message || 'Utilisateur créé avec succès !');
+        const createdUserType = data.data.roles.includes('admin') ? 'Administrateur' : 'Utilisateur';
+        const message = `${createdUserType} ${data.data.username} a bien été créé`;
+        toast.success(message);
         navigate('/admin/users');
       } else {
         throw new Error('Erreur lors de la création de l\'utilisateur.');
       }
+      
     } catch (error) {
       console.error('Erreur lors de la création de l\'utilisateur :', error);
       toast.error('Erreur lors de la création de l\'utilisateur.');
@@ -67,7 +73,7 @@ const CreateUser = () => {
           <div>
             <select value={roles} onChange={(e) => setRoles(e.target.value)} required>
               <option value="user">Utilisateur</option>
-              <option value="admin">Administrateur</option>
+              <option value="admin">admin</option>
             </select>
           </div>
           <div>
@@ -89,6 +95,7 @@ const CreateUser = () => {
 };
 
 export default CreateUser;
+
 
 
 

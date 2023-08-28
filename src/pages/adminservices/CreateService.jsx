@@ -6,7 +6,7 @@ import "./createservice.css";
 const CreateService = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [service_name, setServiceName] = useState(""); // Add service_name state
+  const [service_name, setServiceName] = useState(""); 
   const [price, setPrice] = useState("");
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState("");
@@ -49,7 +49,7 @@ const CreateService = () => {
       body: JSON.stringify({
         name: name,
         description: description,
-        service_name: service_name, // Include service_name in the request body
+        service_name: service_name, 
         price: price,
         category_id: categoryId,
         category_name: categoryName,
@@ -57,7 +57,7 @@ const CreateService = () => {
     })
       .then((response) => {
         if (response.ok) {
-          toast.success("Le service a été créé avec succès");
+          toast.success(`Le service "${name}" a été créé avec succès`);
           navigate("/admin/services");
         } else {
           throw new Error(`Erreur lors de la création du service : ${response.status}`);
@@ -128,6 +128,7 @@ const CreateService = () => {
 };
 
 export default CreateService;
+
 
 
 

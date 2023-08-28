@@ -7,6 +7,8 @@ import "./categorydetails.css";
 const CategoryDetails = () => {
   const { id } = useParams();
   const [category, setCategory] = useState(null);
+  const [categoryName, setCategoryName] = useState("");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -14,6 +16,8 @@ const CategoryDetails = () => {
         const response = await fetch(`http://localhost:3005/api/categories/${id}`);
         const jsonResponse = await response.json();
         setCategory(jsonResponse.data);
+        setCategoryName(jsonResponse.data.category_name);
+        setDescription(jsonResponse.data.description);
       } catch (error) {
         console.log("Une erreur s'est produite lors de la récupération de la catégorie :", error);
         toast.error("Une erreur s'est produite lors de la récupération de la catégorie");
@@ -46,6 +50,8 @@ const CategoryDetails = () => {
           <div className="category-details">
             <p>ID : {category.id}</p>
             <p>Nom : {category.name}</p>
+            <p>Nom de la catégorie : {categoryName}</p>
+            <p>Description : {description}</p>
           </div>
         </div>
       </div>
@@ -54,3 +60,4 @@ const CategoryDetails = () => {
 };
 
 export default CategoryDetails;
+

@@ -1,4 +1,4 @@
-/* .admin-update-user-body {
+.admin-update-user-body {
     background-image: url('http://localhost:3000/img/outilsBarber.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -85,6 +85,6 @@
   
   .admin-update-user-container .retour-button:hover {
     background-color: #555;
-  } */
+  }
   
   

@@ -5,6 +5,7 @@ import AdminHome from "./admin/AdminHome";
 import Apropos from "./pages/apropos/Apropos";
 import Services from "./pages/services/Services";
 import Avis from "./pages/avis/Avis.jsx";
+import CreateReview from "./pages/createreview/CreateReview";
 import Contact from "./pages/contact/Contact";
 import Connexion from "./pages/connexion/Connexion";
 import Deconnexion from "./pages/connexion/Deconnexion";
@@ -26,7 +27,6 @@ import UpdateUser from "./pages/adminusers/UpdateUser";
 import DeleteUser from "./pages/adminusers/DeleteUser";
 
 import ReviewsList from "./pages/adminreviews/ReviewsList";
-import CreateReview from "./pages/adminreviews/CreateReview";
 import ReviewDetails from "./pages/adminreviews/ReviewDetails";
 import UpdateReview from "./pages/adminreviews/UpdateReview";
 import DeleteReview from "./pages/adminreviews/DeleteReview";
@@ -67,7 +67,7 @@ function App() {
         <Route path="/admin/update-user/:id" element={<UpdateUser />} />
         <Route path="/admin/delete-user/:id" element={<DeleteUser />} />
 
-        <Route path="/admin/create-review/" element={<CreateReview />} />
+      
         <Route path="/admin/reviews" element={<ReviewsList />} />
         <Route path="/admin/reviews/:id" element={<ReviewDetails />} />
         <Route path="/admin/update-review/:id" element={<UpdateReview />} />

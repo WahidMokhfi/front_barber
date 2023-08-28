@@ -1,3 +1,4 @@
+// CategoriesList.jsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -30,9 +31,27 @@ const CategoriesList = () => {
           <h2 className="category-heading">Liste des catégories</h2>
           <ul className="categories-list">
             {categories.map((category) => (
-              <li key={category.id}>
-                <Link to={`/admin/category/${category.id}`} className="category-link">
+              <li key={category.id} className="category-item">
+                <Link to={`/admin/categories/${category.id}`} className="category-link">
                   {category.name}
+                </Link>
+                <Link
+                  to={{
+                    pathname: `/admin/update-category/${category.id}`,
+                    state: { category: category },
+                  }}
+                  className="category-action-button category-update-button"
+                >
+                  <span className="category-button-icon">🖋️</span>Modifier
+                </Link>
+                <Link
+                  to={{
+                    pathname: `/admin/delete-category/${category.id}`,
+                    state: { category: category },
+                  }}
+                  className="category-action-button category-delete-button"
+                >
+                  <span className="category-button-icon">🗑️</span>Supprimer
                 </Link>
               </li>
             ))}

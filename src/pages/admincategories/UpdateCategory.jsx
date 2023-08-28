@@ -6,6 +6,8 @@ import Header from "../../layout/Header";
 const UpdateCategory = () => {
   const { id } = useParams();
   const [name, setName] = useState("");
+  const [categoryName, setCategoryName] = useState("");
+  const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,6 +16,8 @@ const UpdateCategory = () => {
         const response = await fetch(`http://localhost:3005/api/categories/${id}`);
         const jsonResponse = await response.json();
         setName(jsonResponse.data.name);
+        setCategoryName(jsonResponse.data.category_name);
+        setDescription(jsonResponse.data.description);
       } catch (error) {
         console.log("Une erreur s'est produite lors de la récupération de la catégorie :", error);
         toast.error("Une erreur s'est produite lors de la récupération de la catégorie");
@@ -25,14 +29,36 @@ const UpdateCategory = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Logique de mise à jour de la catégorie
-
-    toast.success("La catégorie a été mise à jour avec succès");
-    navigate(`/admin/category/${id}`);
+    
+    const token = localStorage.getItem("adminToken");
+    fetch(`http://localhost:3005/api/categories/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: name,
+        category_name: categoryName,
+        description: description,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          toast.success("La catégorie a été mise à jour avec succès");
+          navigate(`/admin/categories`);
+        } else {
+          throw new Error(`Erreur lors de la mise à jour de la catégorie : ${response.status}`);
+        }
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la mise à jour de la catégorie :", error);
+        toast.error("Une erreur s'est produite lors de la mise à jour de la catégorie");
+      });
   };
 
   const handleCancel = () => {
-    navigate(`/admin/category/${id}`);
+    navigate(`/admin/categories`);
   };
 
   return (
@@ -52,6 +78,25 @@ const UpdateCategory = () => {
                 required
               />
             </div>
+            <div>
+              <label htmlFor="categoryName">Nom de la catégorie :</label>
+              <input
+                type="text"
+                id="categoryName"
+                value={categoryName}
+                onChange={(event) => setCategoryName(event.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="description">Description :</label>
+              <textarea
+                id="description"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+                required
+              />
+            </div>
             <button type="submit" className="update-button">Mettre à jour</button>
             <button type="button" className="cancel-button" onClick={handleCancel}>
               Annuler
@@ -64,3 +109,4 @@ const UpdateCategory = () => {
 };
 
 export default UpdateCategory;
+

@@ -1,50 +1,71 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 import Header from "../../layout/Header";
+import "./categorieslist.css";
 
-const CreateCategory = () => {
-  const [name, setName] = useState("");
-  const navigate = useNavigate();
+const CategoriesList = () => {
+  const [categories, setCategories] = useState([]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Logique de création de la catégorie
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("http://localhost:3005/api/categories");
+        const jsonResponse = await response.json();
+        setCategories(jsonResponse.data);
+      } catch (error) {
+        console.log("Une erreur s'est produite lors de la récupération des catégories :", error);
+        toast.error("Une erreur s'est produite lors de la récupération des catégories");
+      }
+    };
 
-    toast.success("La catégorie a été créée avec succès");
-    navigate("/admin/category");
-  };
-
-  const handleCancel = () => {
-    navigate("/admin/category");
-  };
+    fetchCategories();
+  }, []);
 
   return (
     <>
       <Header />
-      <div className="admin-create-category-body">
-        <div className="admin-create-category-container">
-          <h2 className="category-heading">Créer une catégorie</h2>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="name">Nom :</label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                required
-              />
-            </div>
-            <button type="submit" className="create-button">Créer</button>
-            <button type="button" className="cancel-button" onClick={handleCancel}>
-              Annuler
-            </button>
-          </form>
+      <div className="admin-categories-list-body">
+        <div className="admin-categories-list-container">
+          <h2 className="category-heading">Liste des catégories</h2>
+          <ul className="categories-list">
+            {categories.map((category) => (
+              <li key={category.id}>
+                <Link to={`/admin/category/${category.id}`} className="category-link">
+                  {category.name}
+                </Link>
+                <Link
+                  to={{
+                    pathname: `/admin/update-category/${category.id}`,
+                    state: { category: category },
+                  }}
+                  className="category-action-button category-update-button"
+                >
+                  <span className="category-button-icon">🖋️</span>Modifier
+                </Link>
+                <Link
+                  to={{
+                    pathname: `/admin/delete-category/${category.id}`,
+                    state: { category: category },
+                  }}
+                  className="category-action-button category-delete-button"
+                >
+                  <span className="category-button-icon">🗑️</span>Supprimer
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </>
   );
 };
 
-export default CreateCategory;
+export default CategoriesList;
+
+
+
+
+
+
+

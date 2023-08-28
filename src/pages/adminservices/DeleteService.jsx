@@ -1,136 +1,234 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Header from "../../layout/Header";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import "./serviceslist.css";
+import "./deleteservice.css";
 
-const ServicesList = () => {
-  const [services, setServices] = useState([]);
-  const [selectedService, setSelectedService] = useState(null);
+const DeleteService = () => {
+  const [serviceId, setServiceId] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchServices();
-  }, []);
-
-  const fetchServices = async () => {
-    const token = localStorage.getItem("adminToken");
-
-    try {
-      const response = await fetch("http://localhost:3005/api/services", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setServices(data.data);
-      } else {
-        throw new Error(
-          `Erreur lors de la récupération des services : ${response.status}`
-        );
-      }
-    } catch (error) {
-      console.error("Erreur lors de la récupération des services :", error);
-      toast.error(
-        "Une erreur s'est produite lors de la récupération des services"
-      );
+  const handleDeleteService = async () => {
+    if (!serviceId) {
+      toast.error("Veuillez fournir l'ID du service à supprimer.");
+      return;
     }
-  };
 
-  const handleRetourClick = () => {
-    navigate("/admin");
-  };
+    const confirmDelete = window.confirm("Êtes-vous sûr de vouloir supprimer ce service ?");
 
-  const handleServiceClick = (service) => {
-    setSelectedService(selectedService === service ? null : service);
-  };
-
-  const handleDeleteService = async (serviceId, serviceName) => {
-    const token = localStorage.getItem("adminToken");
-
-    if (window.confirm(`Êtes-vous sûr de vouloir supprimer le service "${serviceName}" ?`)) {
+    if (confirmDelete) {
       try {
+        const adminToken = localStorage.getItem("adminToken");
         const response = await fetch(`http://localhost:3005/api/services/${serviceId}`, {
           method: "DELETE",
           headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${adminToken}`,
           },
         });
 
-        if (response.ok) {
-          const updatedServices = services.filter((service) => service.id !== serviceId);
-          setServices(updatedServices);
-
-          toast.success(`Le service "${serviceName}" a été supprimé avec succès.`);
+        if (response.status === 200) {
+          toast.success("Le service a été supprimé avec succès");
+          navigate("/admin/services"); // Redirige vers la liste des services
         } else {
-          throw new Error(`Erreur lors de la suppression du service : ${response.status}`);
+          const responseData = await response.json();
+          throw new Error(`Erreur lors de la suppression du service : ${responseData.message}`);
         }
       } catch (error) {
         console.error("Erreur lors de la suppression du service :", error);
-        toast.error("Une erreur s'est produite lors de la suppression du service.");
+        toast.error("Une erreur s'est produite lors de la suppression du service");
       }
+    } else {
+      toast.info("Suppression annulée");
     }
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleDeleteService();
+  };
+
   return (
-    <>
-      <Header className="services-list-header-prefix" />
-      <div className="services-list-prefix-body">
-        <div className="services-list-container">
-          <h2 className="services-list-title">Liste des services</h2>
-          <ul className="services-list-ul">
-            {services.map((service) => (
-              <li key={service.id} className="services-list-item">
-                <button
-                  className={`services-list-service-link ${
-                    selectedService === service ? "active" : ""
-                  }`}
-                  onClick={() => handleServiceClick(service)}
-                >
-                  {service.name}
-                </button>
-                {selectedService === service && (
-                  <div className="services-list-selected-service">
-                    <h3>Détails du service</h3>
-                    <p className="services-list-service-detail">ID : {service.id}</p>
-                    <p className="services-list-service-detail">Nom : {service.name}</p>
-                    <p className="services-list-service-detail">
-                      Description : {service.description}
-                    </p>
-                    <p className="services-list-service-detail">Prix : {service.price}</p>
-                  </div>
-                )}
-                <Link
-                  to={`/admin/update-service/${service.id}`} // Utilisation de Link pour créer le lien
-                  className="services-list-action-button services-list-update-button"
-                >
-                  <span className="services-list-button-icon">🖋️</span>Modifier
-                </Link>
-                <button
-                  onClick={() => handleDeleteService(service.id, service.name)}
-                  className="services-list-action-button services-list-delete-button"
-                >
-                  <span className="services-list-button-icon">🗑️</span>Supprimer
-                </button>
-              </li>
-            ))}
-          </ul>
-          <div className="services-list-button-container">
-            <button className="services-list-retour-button" onClick={handleRetourClick}>
-              Retour
-            </button>
-          </div>
-        </div>
+    <div className="admin-delete-service-body">
+      <div className="admin-delete-service-container">
+        <h2>Supprimer un service</h2>
+        <form onSubmit={handleSubmit}>
+          <label>ID du service</label>
+          <input
+            type="text"
+            value={serviceId}
+            onChange={(event) => setServiceId(event.target.value)}
+            placeholder="ID du service"
+          />
+          <button type="submit" className="delete-button">
+            Supprimer
+          </button>
+        </form>
       </div>
-    </>
+    </div>
   );
 };
 
-export default ServicesList;
+export default DeleteService;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

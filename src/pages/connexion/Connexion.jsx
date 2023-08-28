@@ -13,6 +13,46 @@ function Connexion() {
     setIsLogin(!isLogin);
   };
 
+  const handleAuthentication = async (endpoint, formData) => {
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+
+        if (isLogin) {
+          const { user, token } = responseData;
+          if (user.roles.includes("admin")) {
+            localStorage.setItem("adminToken", token);
+            localStorage.setItem("adminName", user.username);
+            toast.success(`Bienvenue, ${user.username} !`);
+            navigate("/admin");
+          } else if (user.roles.includes("user")) {
+            localStorage.setItem("userToken", token);
+            localStorage.setItem("userName", user.username);
+            localStorage.setItem("userId", user.id);
+            toast.success(`Bienvenue, ${user.username} !`);
+            navigate("/create-review/");
+          }
+        } else {
+          toast.success("Compte créé avec succès !");
+          navigate("/create-review/");
+        }
+      } else {
+        const errorData = await response.json();
+        toast.error("Erreur : " + errorData.message);
+      }
+    } catch (error) {
+      toast.error("Erreur : " + error);
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
@@ -24,42 +64,14 @@ function Connexion() {
       ? "http://localhost:3005/api/users/login"
       : "http://localhost:3005/api/users/signup";
 
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: enteredUsername,
-          password: password,
-          email: email,
-          phone_number: phoneNumber,
-        }),
-      });
+    const formData = {
+      username: enteredUsername,
+      password: password,
+      email: email,
+      phone_number: phoneNumber,
+    };
 
-      if (response.ok) {
-        const responseData = await response.json();
-        const { user, token } = responseData;
-        if (user.roles.includes("admin")) {
-          localStorage.setItem("adminToken", token);
-          localStorage.setItem("adminName", enteredUsername);
-          toast.success(`Bienvenue, ${enteredUsername} !`);
-          navigate("/admin");
-        } else {
-          localStorage.setItem("userToken", token);
-          localStorage.setItem("userName", enteredUsername);
-          localStorage.setItem("userId", user.id);
-          toast.success(`Bienvenue, ${enteredUsername} !`);
-          navigate("/create-review");
-        }
-      } else {
-        const errorData = await response.json();
-        toast.error("Erreur lors de la connexion : " + errorData.message);
-      }
-    } catch (error) {
-      toast.error("Erreur lors de la connexion : " + error);
-    }
+    handleAuthentication(endpoint, formData);
   };
 
   return (
@@ -93,6 +105,9 @@ function Connexion() {
 }
 
 export default Connexion;
+
+
+
 
 
 
