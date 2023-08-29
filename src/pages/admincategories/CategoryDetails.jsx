@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import Header from "../../layout/Header";
-import { toast } from 'react-toastify';
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import "./categorydetails.css";
 
 const CategoryDetails = () => {
@@ -11,48 +11,43 @@ const CategoryDetails = () => {
   const [description, setDescription] = useState("");
 
   useEffect(() => {
-    const fetchCategory = async () => {
-      try {
-        const response = await fetch(`http://localhost:3005/api/categories/${id}`);
-        const jsonResponse = await response.json();
-        setCategory(jsonResponse.data);
-        setCategoryName(jsonResponse.data.category_name);
-        setDescription(jsonResponse.data.description);
-      } catch (error) {
-        console.log("Une erreur s'est produite lors de la récupération de la catégorie :", error);
-        toast.error("Une erreur s'est produite lors de la récupération de la catégorie");
-      }
-    };
-
-    fetchCategory();
+    const token = localStorage.getItem("adminToken");
+    fetch(`http://localhost:3005/api/categories/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(
+            `Erreur lors de la récupération de la catégorie : ${response.status}`
+          );
+        }
+      })
+      .then((data) => {
+        setCategory(data.data);
+        setCategoryName(data.data.category_name);
+        setDescription(data.data.description);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la récupération :", error);
+        toast.error("Une erreur s'est produite lors de la récupération des données");
+      });
   }, [id]);
-
-  if (!category) {
-    return (
-      <>
-        <Header />
-        <div className="admin-category-details-body">
-          <div className="admin-category-details-container">
-            <h2 className="category-heading">Détails de la catégorie</h2>
-            <p>Chargement en cours...</p>
-          </div>
-        </div>
-      </>
-    );
-  }
 
   return (
     <>
       <Header />
-      <div className="admin-category-details-body">
-        <div className="admin-category-details-container">
-          <h2 className="category-heading">Détails de la catégorie</h2>
-          <div className="category-details">
-            <p>ID : {category.id}</p>
-            <p>Nom : {category.name}</p>
-            <p>Nom de la catégorie : {categoryName}</p>
-            <p>Description : {description}</p>
-          </div>
+      <div className="category-details">
+        <h2>Détails de la catégorie</h2>
+        <div>
+          <h3>{categoryName}</h3>
+          <p>Nom de la catégorie : {categoryName}</p>
+          <p>Description : {description}</p>
+          <p>ID : {category && category.id}</p>
+          {/* Ajoutez d'autres détails du modèle Category ici */}
         </div>
       </div>
     </>

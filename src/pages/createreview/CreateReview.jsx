@@ -10,7 +10,6 @@ const CreateReview = () => {
   const [selectedServiceId, setSelectedServiceId] = useState("");
   const [selectedServiceName, setSelectedServiceName] = useState("");
   const navigate = useNavigate();
-  const userId = localStorage.getItem("userId");
 
   const userToken = localStorage.getItem("userToken");
   const adminToken = localStorage.getItem("adminToken");
@@ -61,7 +60,7 @@ const CreateReview = () => {
         },
         body: JSON.stringify({
           content: comment,
-          user_id: userId,
+          user_id: localStorage.getItem("userId"),
           rating: convertedNote,
           service_id: selectedServiceId,
           service_name: selectedServiceName,
@@ -155,6 +154,7 @@ const CreateReview = () => {
 };
 
 export default CreateReview;
+
 
 
 

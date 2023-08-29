@@ -25,11 +25,11 @@ const CategoriesList = () => {
 
   return (
     <>
-      <Header />
-      <div className="admin-categories-list-body">
-        <div className="admin-categories-list-container">
-          <h2 className="category-heading">Liste des catégories</h2>
-          <ul className="categories-list">
+      <Header className="category-header-prefix" />
+      <div className="category-prefix-body">
+        <div className="category-container">
+          <h2 className="category-title">Liste des catégories</h2>
+          <ul className="category-ul">
             {categories.map((category) => (
               <li key={category.id} className="category-item">
                 <Link to={`/admin/categories/${category.id}`} className="category-link">
@@ -63,3 +63,5 @@ const CategoriesList = () => {
 };
 
 export default CategoriesList;
+
+

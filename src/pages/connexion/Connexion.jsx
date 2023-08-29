@@ -42,7 +42,8 @@ function Connexion() {
           }
         } else {
           toast.success("Compte créé avec succès !");
-          navigate("/create-review/");
+          localStorage.setItem("userName", formData.username); // Stocke le nom d'utilisateur ici
+          navigate("/");
         }
       } else {
         const errorData = await response.json();
@@ -105,6 +106,7 @@ function Connexion() {
 }
 
 export default Connexion;
+
 
 
 

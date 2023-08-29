@@ -44,13 +44,6 @@ const AdminHome = () => {
           </div>
           <div className="admin-column-left">
             <div className="admin-card">
-              <h2>Create a review</h2>
-              <p>Créez un avis.</p>
-              <Link to="/admin/create-review" className="admin-card-link">
-                CREATE / POST
-              </Link>
-            </div>
-            <div className="admin-card">
               <h2>Read reviews</h2>
               <p>Liste et détails des avis.</p>
               <Link to="/admin/reviews" className="admin-card-link">
