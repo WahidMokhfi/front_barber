@@ -1,32 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../layout/Header";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import "./deletecategory.css";
 
 const DeleteCategory = () => {
+  const [categories, setCategories] = useState([]);
   const [id, setId] = useState("");
   const navigate = useNavigate();
 
-  const handleDeleteCategory = async () => {
-    const token = localStorage.getItem("adminToken");
-
-    try {
-      const response = await fetch(`http://localhost:3005/api/categories/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        toast.success("La catégorie a été supprimée avec succès");
-        navigate(`/admin/categories`);
-      } else {
-        throw new Error(`Erreur lors de la suppression de la catégorie : ${response.status}`);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("http://localhost:3005/api/categories");
+        const jsonResponse = await response.json();
+        setCategories(jsonResponse.data);
+      } catch (error) {
+        console.log("Une erreur s'est produite lors de la récupération des catégories :", error);
+        toast.error("Une erreur s'est produite lors de la récupération des catégories");
       }
-    } catch (error) {
-      console.log("Une erreur s'est produite lors de la suppression de la catégorie :", error);
-      toast.error("Une erreur s'est produite lors de la suppression de la catégorie");
+    };
+
+    fetchCategories();
+  }, []);
+
+  const handleDeleteCategory = async () => {
+    const categoryToDelete = categories.find((category) => category.id === parseInt(id, 10));
+
+    if (categoryToDelete) {
+      const confirmDelete = window.confirm(`Êtes-vous sûr de vouloir supprimer cette catégorie ?`);
+
+      if (confirmDelete) {
+        try {
+          const adminToken = localStorage.getItem("adminToken"); // Récupération du token d'administration depuis le local storage
+
+          await fetch(`http://localhost:3005/api/categories/${categoryToDelete.id}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${adminToken}`,
+            },
+          });
+
+          toast.success(`La catégorie ${categoryToDelete.category_name} a été supprimée avec succès`);
+        } catch (error) {
+          console.log("Une erreur s'est produite lors de la suppression de la catégorie :", error);
+          toast.error("Une erreur s'est produite lors de la suppression de la catégorie");
+        }
+      } else {
+        toast.info("Suppression annulée");
+      }
+    } else {
+      toast.error("Catégorie introuvable");
     }
   };
 
@@ -36,7 +60,7 @@ const DeleteCategory = () => {
   };
 
   const handleRetourClick = () => {
-    navigate("/admin");
+    navigate("/admin/categories");
   };
 
   return (
@@ -60,6 +84,7 @@ const DeleteCategory = () => {
               Supprimer
             </button>
           </form>
+
           <button className="retour-button" onClick={handleRetourClick}>
             Retour
           </button>
@@ -70,6 +95,20 @@ const DeleteCategory = () => {
 };
 
 export default DeleteCategory;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

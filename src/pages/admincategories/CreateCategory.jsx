@@ -1,67 +1,99 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { toast } from 'react-toastify';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Header from "../../layout/Header";
-import "./categorieslist.css";
 
-const CategoriesList = () => {
-  const [categories, setCategories] = useState([]);
+const CreateCategory = () => {
+  const [name, setName] = useState("");
+  const [categoryName, setCategoryName] = useState("");
+  const [description, setDescription] = useState("");
+  const navigate = useNavigate();
+  const adminToken = localStorage.getItem("adminToken");
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch("http://localhost:3005/api/categories");
-        const jsonResponse = await response.json();
-        setCategories(jsonResponse.data);
-      } catch (error) {
-        console.log("Une erreur s'est produite lors de la récupération des catégories :", error);
-        toast.error("Une erreur s'est produite lors de la récupération des catégories");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:3005/api/categories", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${adminToken}`,
+        },
+        body: JSON.stringify({
+          name: name,
+          category_name: categoryName,
+          description: description,
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("La catégorie a été créée avec succès");
+        navigate("/admin/categories");
+      } else {
+        toast.error("Une erreur s'est produite lors de la création de la catégorie");
       }
-    };
+    } catch (error) {
+      console.error("Une erreur s'est produite :", error);
+      toast.error("Une erreur s'est produite lors de la création de la catégorie");
+    }
+  };
 
-    fetchCategories();
-  }, []);
+  const handleCancel = () => {
+    navigate("/admin/categories");
+  };
 
   return (
     <>
       <Header />
-      <div className="admin-categories-list-body">
-        <div className="admin-categories-list-container">
-          <h2 className="category-heading">Liste des catégories</h2>
-          <ul className="categories-list">
-            {categories.map((category) => (
-              <li key={category.id}>
-                <Link to={`/admin/category/${category.id}`} className="category-link">
-                  {category.name}
-                </Link>
-                <Link
-                  to={{
-                    pathname: `/admin/update-category/${category.id}`,
-                    state: { category: category },
-                  }}
-                  className="category-action-button category-update-button"
-                >
-                  <span className="category-button-icon">🖋️</span>Modifier
-                </Link>
-                <Link
-                  to={{
-                    pathname: `/admin/delete-category/${category.id}`,
-                    state: { category: category },
-                  }}
-                  className="category-action-button category-delete-button"
-                >
-                  <span className="category-button-icon">🗑️</span>Supprimer
-                </Link>
-              </li>
-            ))}
-          </ul>
+      <div className="admin-create-category-body">
+        <div className="admin-create-category-container">
+          <h2 className="category-heading">Créer une catégorie</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="name">Nom :</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="categoryName">Nom de catégorie :</label>
+              <input
+                type="text"
+                id="categoryName"
+                value={categoryName}
+                onChange={(event) => setCategoryName(event.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="description">Description :</label>
+              <textarea
+                id="description"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className="create-button">Créer</button>
+            <button type="button" className="cancel-button" onClick={handleCancel}>
+              Annuler
+            </button>
+          </form>
         </div>
       </div>
     </>
   );
 };
 
-export default CategoriesList;
+export default CreateCategory;
+
+
+
 
 
 

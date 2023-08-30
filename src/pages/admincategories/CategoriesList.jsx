@@ -1,4 +1,3 @@
-// CategoriesList.jsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -11,7 +10,14 @@ const CategoriesList = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("http://localhost:3005/api/categories");
+        const adminToken = localStorage.getItem("adminToken"); // Récupération du token depuis le localStorage
+
+        const response = await fetch("http://localhost:3005/api/categories", {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+        });
+
         const jsonResponse = await response.json();
         setCategories(jsonResponse.data);
       } catch (error) {
@@ -63,5 +69,6 @@ const CategoriesList = () => {
 };
 
 export default CategoriesList;
+
 
 

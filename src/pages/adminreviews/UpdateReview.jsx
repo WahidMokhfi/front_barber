@@ -1,65 +1,63 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
-const UpdateReview = () => {
-  const { id } = useParams();
+function UpdateReview() {
+  const { reviewId } = useParams();
   const navigate = useNavigate();
-
-  const [review, setReview] = useState({
-    content: "",
-    rating: 0,
-  });
+  const [content, setContent] = useState('');
+  const [rating, setRating] = useState('1');
+  const [userId, setUserId] = useState('');
+  const [serviceId, setServiceId] = useState('');
+  const [service_name, setServiceName] = useState('');
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
     const fetchReview = async () => {
       try {
-        const response = await fetch(`http://localhost:3005/api/reviews/${id}`);
-        if (response.ok) {
-          const data = await response.json();
-          setReview(data);
-        } else {
-          throw new Error(
-            `Erreur lors de la récupération de l'avis : ${response.status}`
-          );
-        }
+        const response = await fetch(`http://localhost:3005/api/reviews/${reviewId}`);
+        const data = await response.json();
+        setContent(data.content);
+        setRating(data.rating);
+        setServiceId(data.service_id);
+        setUserId(data.user_id);
+        setServiceName(data.service_name);
+        setUsername(data.username);
       } catch (error) {
-        console.error("Erreur lors de la récupération de l'avis :", error);
-        toast.error("Une erreur s'est produite lors de la récupération de l'avis");
+        console.error('Erreur lors de la récupération de l\'avis :', error);
       }
     };
 
     fetchReview();
-  }, [id]);
+  }, [reviewId]);
 
-  const handleChange = (e) => {
-    setReview((prevReview) => ({
-      ...prevReview,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+    const token = localStorage.getItem('adminToken');
     try {
-      const response = await fetch(`http://localhost:3005/api/reviews/${id}`, {
-        method: "PUT",
+      const response = await fetch(`http://localhost:3005/api/reviews/${reviewId}`, {
+        method: 'PUT',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(review),
+        body: JSON.stringify({
+          content: content,
+          rating: rating,
+          service_id: serviceId,
+          user_id: userId,
+          service_name: service_name,
+          username: username,
+        }),
       });
 
       if (response.ok) {
-        toast.success("L'avis a été mis à jour avec succès");
-        navigate("/admin/reviews"); // Rediriger vers la liste des avis après la mise à jour
+        navigate('/admin/reviews');
       } else {
-        throw new Error(`Erreur lors de la mise à jour de l'avis : ${response.status}`);
+        console.error('Erreur lors de la mise à jour de l\'avis :', response.status);
       }
     } catch (error) {
-      console.error("Erreur lors de la mise à jour de l'avis :", error);
-      toast.error("Une erreur s'est produite lors de la mise à jour de l'avis");
+      console.error('Erreur lors de la mise à jour de l\'avis :', error);
     }
   };
 
@@ -71,22 +69,58 @@ const UpdateReview = () => {
           <label htmlFor="content">Contenu :</label>
           <textarea
             id="content"
-            name="content"
-            value={review.content}
-            onChange={handleChange}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
             required
-          ></textarea>
+          />
         </div>
         <div>
           <label htmlFor="rating">Évaluation :</label>
           <input
             type="number"
             id="rating"
-            name="rating"
-            value={review.rating}
-            onChange={handleChange}
-            min="1"
-            max="5"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="serviceId">ID du service :</label>
+          <input
+            type="text"
+            id="serviceId"
+            value={serviceId}
+            onChange={(e) => setServiceId(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="userId">ID de l'utilisateur :</label>
+          <input
+            type="text"
+            id="userId"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="service_name">Nom du service :</label>
+          <input
+            type="text"
+            id="service_name"
+            value={service_name}
+            onChange={(e) => setServiceName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="username">Nom d'utilisateur :</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
@@ -94,6 +128,7 @@ const UpdateReview = () => {
       </form>
     </div>
   );
-};
+}
 
 export default UpdateReview;
+

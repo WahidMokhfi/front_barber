@@ -141,6 +141,21 @@ body {
   background-color: #555;
 }
 
+/* Styling for the update button */
+.reviews-list-update-button {
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reviews-list-update-button:hover {
+  background-color: #219653;
+}
+
+
 
 
 
