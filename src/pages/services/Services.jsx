@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './services.css';
 import Header from '../../layout/Header';
-import { useLocation } from 'react-router-dom'; // Import de useLocation depuis react-router-dom
+import { useLocation } from 'react-router-dom'; 
 
 function Services() {
   const [services, setServices] = useState([]);
-  const location = useLocation(); // Utilisation de useLocation pour obtenir l'emplacement actuel
+  const location = useLocation(); 
 
   useEffect(() => {
     fetch('http://localhost:3005/api/services')

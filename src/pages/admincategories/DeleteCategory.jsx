@@ -41,7 +41,7 @@ const DeleteCategory = () => {
             },
           });
 
-          toast.success(`La catégorie ${categoryToDelete.category_name} a été supprimée avec succès`);
+          toast.success(`La ${categoryToDelete.category_name} a été supprimée avec succès`);
         } catch (error) {
           console.log("Une erreur s'est produite lors de la suppression de la catégorie :", error);
           toast.error("Une erreur s'est produite lors de la suppression de la catégorie");

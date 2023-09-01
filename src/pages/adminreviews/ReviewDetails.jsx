@@ -46,8 +46,8 @@ const ReviewDetails = () => {
       <div>
         <h3>Avis ID: {review.id}</h3>
         <p>Contenu: {review.content}</p>
-        <p>Utilisateur ID: {review.user_id}</p>
         <p>Service ID: {review.service_id}</p>
+        <p>Nom du Service: {review.service_name}</p>
         <p>Évaluation: {review.rating}</p>
         <p>Utilisateur: {review.username}</p>
       </div>
@@ -56,3 +56,6 @@ const ReviewDetails = () => {
 };
 
 export default ReviewDetails;
+
+
+

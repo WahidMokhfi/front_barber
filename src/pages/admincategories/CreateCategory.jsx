@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Header from "../../layout/Header";
+import "./createcategory.css";
 
 const CreateCategory = () => {
-  const [name, setName] = useState("");
   const [categoryName, setCategoryName] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
@@ -21,7 +21,6 @@ const CreateCategory = () => {
           Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({
-          name: name,
           category_name: categoryName,
           description: description,
         }),
@@ -50,16 +49,6 @@ const CreateCategory = () => {
         <div className="admin-create-category-container">
           <h2 className="category-heading">Créer une catégorie</h2>
           <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="name">Nom :</label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                required
-              />
-            </div>
             <div>
               <label htmlFor="categoryName">Nom de catégorie :</label>
               <input

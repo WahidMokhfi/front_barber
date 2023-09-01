@@ -27,7 +27,7 @@ function ReviewsList() {
         }
       } catch (error) {
         console.error('Erreur lors de la récupération des avis :', error);
-        toast.error('Une erreur s\'est produite lors de la récupération des avis');
+        toast.error("Une erreur s'est produite lors de la récupération des avis");
       }
     };
 
@@ -57,8 +57,8 @@ function ReviewsList() {
           throw new Error(`Erreur lors de la suppression de l'avis : ${response.status}`);
         }
       } catch (error) {
-        console.error('Erreur lors de la suppression de l\'avis :', error);
-        toast.error('Une erreur s\'est produite lors de la suppression de l\'avis.');
+        console.error("Erreur lors de la suppression de l'avis :", error);
+        toast.error("Une erreur s'est produite lors de la suppression de l'avis.");
       }
     }
   };
@@ -71,17 +71,20 @@ function ReviewsList() {
     navigate('/admin');
   };
 
+  // Filtrer les avis ayant une note de 5
+  const filteredReviews = reviews.filter(review => review.rating === 5);
+
   return (
     <div className="reviews-list-prefix-body">
       <Header />
       <section className="reviews-list" id="reviews-list">
         <h2 className="heading">Liste des avis</h2>
         <div className="box-container">
-          {reviews.length > 0 ? (
-            reviews.map((review, index) => (
+          {filteredReviews.length > 0 ? (
+            filteredReviews.map((review, index) => (
               <div className="box" key={index}>
                 <div className="quote-container">
-                <img src="/img/icon-avis.png" alt="" className="quote" />
+                  <img src="/img/icon-avis.png" alt="" className="quote" />
                 </div>
                 <p>{review.content}</p>
                 <img src={review.User.avatar} className="user" alt="" />
@@ -102,11 +105,11 @@ function ReviewsList() {
                 </button>
                 {selectedReview === review && (
                   <div className="reviews-list-details">
-                    <p>ID: {review.id}</p>
-                    <p>Utilisateur ID: {review.user_id}</p>
-                    <p>Service ID: {review.service_id}</p>
-                    <p>Évaluation: {review.rating}</p>
-                    <p>Utilisateur: {review.User.username}</p>
+                    <p>ID de l'Avis : {review.id}</p>
+                    <p>Utilisateur : {review.User.username}</p>
+                    <p>ID de l'utilisateur : {review.user_id}</p>
+                    <p>Nom du Service : {review.service_name}</p>
+                    <p>Évaluation : {review.rating}</p>
                   </div>
                 )}
                 <button
@@ -118,7 +121,7 @@ function ReviewsList() {
               </div>
             ))
           ) : (
-            <div>Aucun avis disponible</div>
+            <div>Aucun avis avec une note de 5 disponible</div>
           )}
         </div>
 
@@ -133,6 +136,10 @@ function ReviewsList() {
 }
 
 export default ReviewsList;
+
+
+
+
 
 
 

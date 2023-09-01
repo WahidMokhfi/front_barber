@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import "./createservice.css";
 
 const CreateService = () => {
-  const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [service_name, setServiceName] = useState(""); 
   const [price, setPrice] = useState("");
@@ -47,7 +46,6 @@ const CreateService = () => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        name: name,
         description: description,
         service_name: service_name, 
         price: price,
@@ -57,7 +55,7 @@ const CreateService = () => {
     })
       .then((response) => {
         if (response.ok) {
-          toast.success(`Le service "${name}" a été créé avec succès`);
+          toast.success(`Le service "${service_name}" a été créé avec succès`);
           navigate("/admin/services");
         } else {
           throw new Error(`Erreur lors de la création du service : ${response.status}`);
@@ -81,8 +79,8 @@ const CreateService = () => {
           <label>Nom du service</label>
           <input
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={service_name}
+            onChange={(e) => setServiceName(e.target.value)}
             placeholder="Nom du service"
           />
           <label>Description du service</label>
@@ -90,13 +88,6 @@ const CreateService = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Description du service"
-          />
-          <label>Nom du service (service_name)</label>
-          <input
-            type="text"
-            value={service_name}
-            onChange={(e) => setServiceName(e.target.value)}
-            placeholder="Nom du service (service_name)"
           />
           <label>Prix du service</label>
           <input
@@ -113,7 +104,7 @@ const CreateService = () => {
             <option value="">Sélectionner une catégorie</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
-                {category.name}
+                {category.category_name}
               </option>
             ))}
           </select>

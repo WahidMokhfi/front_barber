@@ -55,10 +55,10 @@ const ServiceDetails = () => {
       <div className="service-details">
         <h2>Détails du service</h2>
         <div>
-          <h3>{service.name}</h3>
+          <h3>{service.service_name}</h3>
           <p>{service.description}</p>
           <p>Prix : {service.price}</p>
-          <p>Nom de la catégorie : {category.name}</p>
+          <p>Nom de la catégorie : {category.category_name}</p>
           <p>ID de la catégorie : {category.id}</p>
         </div>
       </div>

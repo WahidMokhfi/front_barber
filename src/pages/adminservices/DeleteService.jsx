@@ -27,7 +27,7 @@ const DeleteService = () => {
 
         if (response.status === 200) {
           toast.success("Le service a été supprimé avec succès");
-          navigate("/admin/services"); // Redirige vers la liste des services
+          navigate("/admin/services"); 
         } else {
           const responseData = await response.json();
           throw new Error(`Erreur lors de la suppression du service : ${responseData.message}`);

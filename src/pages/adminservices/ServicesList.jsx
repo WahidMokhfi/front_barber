@@ -58,13 +58,12 @@ const ServicesList = () => {
                   className={`services-list-service-link ${selectedService === service ? "active" : ""}`}
                   onClick={() => handleServiceClick(service)}
                 >
-                  {service.name}
+                  {service.service_name}
                 </button>
                 {selectedService === service && (
                   <div className="services-list-selected-service">
-                    {/* Détails du service */}
                     <p>ID : {service.id}</p>
-                    <p>Nom : {service.name}</p>
+                    <p>Nom : {service.service_name}</p>
                     <p>Description : {service.description}</p>
                     <p>Prix : {service.price}</p>
                     <p>Nom de la catégorie : {service.category_name}</p>

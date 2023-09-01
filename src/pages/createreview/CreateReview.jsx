@@ -42,16 +42,16 @@ const CreateReview = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     if (!userToken && !adminToken) {
       navigate("/connexion");
       toast.error("Veuillez vous connecter pour accéder à cette page");
       return;
     }
-
+  
     try {
       const convertedNote = Math.ceil(note);
-
+  
       const response = await fetch("http://localhost:3005/api/reviews", {
         method: "POST",
         headers: {
@@ -64,12 +64,13 @@ const CreateReview = () => {
           rating: convertedNote,
           service_id: selectedServiceId,
           service_name: selectedServiceName,
-          username: localStorage.getItem("userName"), // Utilisation de getItem ici
+          username: localStorage.getItem("userName"),
         }),
       });
-
+  
       if (response.ok) {
-        toast.success("La review a été créée avec succès");
+        const username = localStorage.getItem("userName");
+        toast.success(`Merci ${username} pour ton avis. À bientôt !`);
         navigate("/avis");
       } else {
         throw new Error(`Erreur lors de la création de la review : ${response.status}`);
@@ -79,7 +80,7 @@ const CreateReview = () => {
       toast.error("Une erreur s'est produite lors de la création de la review");
     }
   };
-
+  
   const handleRetourClick = () => {
     navigate("/avis");
   };
@@ -125,8 +126,8 @@ const CreateReview = () => {
               >
                 <option value="" disabled>Sélectionnez un service</option>
                 {serviceList.map(service => (
-                  <option key={service.id} value={service.name} data-id={service.id}>
-                    {service.name}
+                  <option key={service.id} value={service.service_name} data-id={service.id}>
+                    {service.service_name}
                   </option>
                 ))}
               </select>

@@ -39,7 +39,7 @@ const CategoriesList = () => {
             {categories.map((category) => (
               <li key={category.id} className="category-item">
                 <Link to={`/admin/categories/${category.id}`} className="category-link">
-                  {category.name}
+                  {category.category_name}
                 </Link>
                 <Link
                   to={{

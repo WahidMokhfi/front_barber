@@ -5,7 +5,7 @@ import "./updateservice.css";
 
 const UpdateService = () => {
   const [serviceId, setServiceId] = useState("");
-  const [name, setName] = useState("");
+  const [service_name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const navigate = useNavigate();
@@ -20,8 +20,8 @@ const UpdateService = () => {
       });
       if (response.ok) {
         const data = await response.json();
-        const { name, description, price } = data;
-        setName(name);
+        const { service_name, description, price } = data;
+        setName(service_name);
         setDescription(description);
         setPrice(price);
       } else {
@@ -47,7 +47,7 @@ const UpdateService = () => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        name: name,
+        service_name: service_name,
         description: description,
         price: price,
       }),
@@ -85,7 +85,7 @@ const UpdateService = () => {
           <label>Nom du service</label>
           <input
             type="text"
-            value={name}
+            value={service_name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Nom du service"
           />
