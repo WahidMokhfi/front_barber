@@ -12,7 +12,14 @@ const DeleteCategory = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("http://localhost:3005/api/categories");
+        const adminToken = localStorage.getItem("adminToken"); // Récupération du token d'administration depuis le local storage
+
+        const response = await fetch("http://localhost:3005/api/categories", {
+          headers: {
+            Authorization: `Bearer ${adminToken}`, // Inclusion du token d'administration dans l'en-tête
+          },
+        });
+
         const jsonResponse = await response.json();
         setCategories(jsonResponse.data);
       } catch (error) {
@@ -41,7 +48,7 @@ const DeleteCategory = () => {
             },
           });
 
-          toast.success(`La ${categoryToDelete.category_name} a été supprimée avec succès`);
+          toast.success(`La catégorie "${categoryToDelete.category_name}" a été supprimée avec succès`);
         } catch (error) {
           console.log("Une erreur s'est produite lors de la suppression de la catégorie :", error);
           toast.error("Une erreur s'est produite lors de la suppression de la catégorie");

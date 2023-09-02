@@ -5,7 +5,6 @@ import Header from "../../layout/Header";
 
 const UpdateCategory = () => {
   const { id } = useParams();
-  const [name, setName] = useState("");
   const [categoryName, setCategoryName] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
@@ -13,9 +12,13 @@ const UpdateCategory = () => {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const response = await fetch(`http://localhost:3005/api/categories/${id}`);
+        const adminToken = localStorage.getItem("adminToken"); // Récupérez le jeton d'administrateur ici
+        const response = await fetch(`http://localhost:3005/api/categories/${id}`, {
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+        });
         const jsonResponse = await response.json();
-        setName(jsonResponse.data.name);
         setCategoryName(jsonResponse.data.category_name);
         setDescription(jsonResponse.data.description);
       } catch (error) {
@@ -23,8 +26,14 @@ const UpdateCategory = () => {
         toast.error("Une erreur s'est produite lors de la récupération de la catégorie");
       }
     };
+    
+    
 
     fetchCategory();
+
+    // Récupérez le jeton admin et stockez-le dans le local storage
+    const adminToken = localStorage.getItem("adminToken");
+    localStorage.setItem("adminToken", adminToken || "");
   }, [id]);
 
   const handleSubmit = (event) => {
@@ -38,14 +47,13 @@ const UpdateCategory = () => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        name: name,
         category_name: categoryName,
         description: description,
       }),
     })
       .then((response) => {
         if (response.ok) {
-          toast.success("La catégorie a été mise à jour avec succès");
+          toast.success(`La catégorie "${categoryName}" a été mise à jour avec succès`);
           navigate(`/admin/categories`);
         } else {
           throw new Error(`Erreur lors de la mise à jour de la catégorie : ${response.status}`);
@@ -68,16 +76,6 @@ const UpdateCategory = () => {
         <div className="admin-update-category-container">
           <h2 className="category-heading">Modifier la catégorie</h2>
           <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="name">Nom :</label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                required
-              />
-            </div>
             <div>
               <label htmlFor="categoryName">Nom de la catégorie :</label>
               <input
@@ -109,4 +107,5 @@ const UpdateCategory = () => {
 };
 
 export default UpdateCategory;
+
 

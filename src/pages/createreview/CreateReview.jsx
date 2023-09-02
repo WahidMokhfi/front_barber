@@ -42,16 +42,19 @@ const CreateReview = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
+    console.log("userToken:", userToken);
+    console.log("adminToken:", adminToken); // Ajout des console.log pour vérifier les jetons
+
     if (!userToken && !adminToken) {
       navigate("/connexion");
       toast.error("Veuillez vous connecter pour accéder à cette page");
       return;
     }
-  
+
     try {
       const convertedNote = Math.ceil(note);
-  
+
       const response = await fetch("http://localhost:3005/api/reviews", {
         method: "POST",
         headers: {
@@ -67,7 +70,7 @@ const CreateReview = () => {
           username: localStorage.getItem("userName"),
         }),
       });
-  
+
       if (response.ok) {
         const username = localStorage.getItem("userName");
         toast.success(`Merci ${username} pour ton avis. À bientôt !`);
@@ -80,7 +83,7 @@ const CreateReview = () => {
       toast.error("Une erreur s'est produite lors de la création de la review");
     }
   };
-  
+
   const handleRetourClick = () => {
     navigate("/avis");
   };
@@ -155,6 +158,7 @@ const CreateReview = () => {
 };
 
 export default CreateReview;
+
 
 
 
