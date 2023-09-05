@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import "./updatecategory.css";
 import Header from "../../layout/Header";
 
 const UpdateCategory = () => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../../layout/Header";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import "./categorydetails.css";
+import "./categorydetails.css"; // Assurez-vous que le bon chemin est utilisé ici
 
 const CategoryDetails = () => {
   const { id } = useParams();
@@ -40,9 +40,9 @@ const CategoryDetails = () => {
   return (
     <>
       <Header />
-      <div className="category-details">
+      <div className="category-details-prefix">
         <h2>Détails de la catégorie</h2>
-        <div>
+        <div className="category-details-prefix-content">
           <h3>{categoryName}</h3>
           <p>Nom de la catégorie : {categoryName}</p>
           <p>Description : {description}</p>
@@ -55,4 +55,8 @@ const CategoryDetails = () => {
 };
 
 export default CategoryDetails;
+
+
+
+
 

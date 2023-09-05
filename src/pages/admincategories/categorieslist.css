@@ -1,13 +1,4 @@
-/* categorieslist.css */
-
-/* Reset default margin and padding */
-body, h1, h2, h3, p, ul, li {
-  margin: 0;
-  padding: 0;
-}
-
-/* Body styling */
-.category-prefix-body {
+.categories-list-prefix-body {
   margin: 0;
   padding: 0;
   background-image: url('http://localhost:3000/img/outilsBarber.jpg');
@@ -20,8 +11,7 @@ body, h1, h2, h3, p, ul, li {
   min-height: 100vh; 
 }
 
-/* Header styling */
-.category-header-prefix {
+.categories-list-header-prefix {
   width: 100%;
   padding: 2rem 0;
   display: flex;
@@ -32,16 +22,11 @@ body, h1, h2, h3, p, ul, li {
   top: 0;
   left: 0;
   right: 0;
-  background-image: url('http://localhost:3000/img/outilsBarber.jpg'); /* Background image here */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: var(--main-color); /* Fallback background color */
+  background: var(--main-color);
   z-index: 1000;
 }
 
-/* Container styling */
-.category-container {
+.categories-list-container {
   padding: 20px;
   max-width: 700px;
   width: 100%;
@@ -54,28 +39,25 @@ body, h1, h2, h3, p, ul, li {
   z-index: 1;
 }
 
-/* Title styling */
-.category-title {
+.categories-list-title {
   text-align: center;
   margin-bottom: 20px;
   color: black;
   font-size: 24px;
 }
 
-/* List styling */
-.category-ul {
+.categories-list-ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.category-item {
+.categories-list-item {
   margin-bottom: 10px;
   position: relative;
 }
 
-/* Link styling */
-.category-link {
+.categories-list-category-link {
   display: block;
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.2);
@@ -83,63 +65,64 @@ body, h1, h2, h3, p, ul, li {
   color: #fff;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-  font-size: 16px;
+  font-size: 20px;
 }
 
-/* Hover effect on link background */
-.category-link:hover {
+/* .categories-list-category-link:hover {
   background-color: #000;
-}
+} */
 
-.category-link.active {
+/* .categories-list-category-link.active {
   background-color: #000;
-}
+} */
 
-.category-selected-link {
+.categories-list-selected-category {
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 5px;
   margin-top: 10px;
 }
 
-.category-selected-link h3 {
+.categories-list-selected-category h3 {
   font-size: 18px;
   margin-bottom: 5px;
 }
 
-.category-detail {
-  font-size: 14px;
+.categories-list-category-detail:hover {
+  
+  font-size: 20px;
 }
 
-.category-button-container {
+.categories-list-button-container {
   display: flex;
   justify-content: flex-end;
 }
 
-.category-action-button {
+.categories-list-action-button {
+  display: inline-block;
   padding: 5px 10px;
   margin-right: 10px;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 20px;
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
-.category-update-button {
+.categories-list-update-button {
   background-color: #ffd700; 
   color: #000;
 }
 
-.category-delete-button {
+.categories-list-delete-button {
   background-color: #ff0000; 
   color: #fff;
 }
 
-.category-button-icon {
+.categories-list-button-icon {
   margin-right: 5px;
 }
 
-.category-return-button {
+.categories-list-retour-button {
   padding: 10px;
   background-color: #333;
   text-decoration: none;
@@ -150,8 +133,12 @@ body, h1, h2, h3, p, ul, li {
   margin-top: 20px;
 }
 
-.category-return-button:hover {
+.categories-list-retour-button:hover {
   background-color: #555;
 }
+
+
+
+
 
 
