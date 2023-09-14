@@ -74,7 +74,7 @@ const CreateReview = () => {
       if (response.ok) {
         const username = localStorage.getItem("userName");
         toast.success(`Merci ${username} pour ton avis. À bientôt !`);
-        navigate("/avis");
+        navigate("/");
       } else {
         throw new Error(`Erreur lors de la création de la review : ${response.status}`);
       }
@@ -85,7 +85,7 @@ const CreateReview = () => {
   };
 
   const handleRetourClick = () => {
-    navigate("/avis");
+    navigate("/");
   };
 
   return (

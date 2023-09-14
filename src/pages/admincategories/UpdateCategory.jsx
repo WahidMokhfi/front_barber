@@ -13,7 +13,7 @@ const UpdateCategory = () => {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const adminToken = localStorage.getItem("adminToken"); // Récupérez le jeton d'administrateur ici
+        const adminToken = localStorage.getItem("adminToken");
         const response = await fetch(`http://localhost:3005/api/categories/${id}`, {
           headers: {
             Authorization: `Bearer ${adminToken}`,
@@ -27,19 +27,16 @@ const UpdateCategory = () => {
         toast.error("Une erreur s'est produite lors de la récupération de la catégorie");
       }
     };
-    
-    
 
     fetchCategory();
 
-    // Récupérez le jeton admin et stockez-le dans le local storage
     const adminToken = localStorage.getItem("adminToken");
     localStorage.setItem("adminToken", adminToken || "");
   }, [id]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     const token = localStorage.getItem("adminToken");
     fetch(`http://localhost:3005/api/categories/${id}`, {
       method: "PUT",
@@ -54,7 +51,7 @@ const UpdateCategory = () => {
     })
       .then((response) => {
         if (response.ok) {
-          toast.success(`La catégorie "${categoryName}" a été mise à jour avec succès`);
+          toast.success(`La "${categoryName}" a été mise à jour avec succès`);
           navigate(`/admin/categories`);
         } else {
           throw new Error(`Erreur lors de la mise à jour de la catégorie : ${response.status}`);
@@ -77,7 +74,7 @@ const UpdateCategory = () => {
         <div className="admin-update-category-container">
           <h2 className="category-heading">Modifier la catégorie</h2>
           <form onSubmit={handleSubmit}>
-            <div>
+            <div className="form-group">
               <label htmlFor="categoryName">Nom de la catégorie :</label>
               <input
                 type="text"
@@ -87,7 +84,7 @@ const UpdateCategory = () => {
                 required
               />
             </div>
-            <div>
+            <div className="form-group">
               <label htmlFor="description">Description :</label>
               <textarea
                 id="description"
@@ -108,5 +105,6 @@ const UpdateCategory = () => {
 };
 
 export default UpdateCategory;
+
 
 

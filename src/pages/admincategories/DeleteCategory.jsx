@@ -6,7 +6,7 @@ import "./deletecategory.css";
 
 const DeleteCategory = () => {
   const [categories, setCategories] = useState([]);
-  const [id, setId] = useState("");
+  const [categoryId, setCategoryId] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,10 +32,10 @@ const DeleteCategory = () => {
   }, []);
 
   const handleDeleteCategory = async () => {
-    const categoryToDelete = categories.find((category) => category.id === parseInt(id, 10));
+    const categoryToDelete = categories.find((category) => category.id === parseInt(categoryId, 10));
 
     if (categoryToDelete) {
-      const confirmDelete = window.confirm(`Êtes-vous sûr de vouloir supprimer cette catégorie ?`);
+      const confirmDelete = window.confirm(`Êtes-vous sûr de vouloir supprimer la catégorie "${categoryToDelete.category_name}" ?`);
 
       if (confirmDelete) {
         try {
@@ -48,7 +48,7 @@ const DeleteCategory = () => {
             },
           });
 
-          toast.success(`La catégorie "${categoryToDelete.category_name}" a été supprimée avec succès`);
+          toast.success(`La "${categoryToDelete.category_name}" a été supprimée avec succès`);
         } catch (error) {
           console.log("Une erreur s'est produite lors de la suppression de la catégorie :", error);
           toast.error("Une erreur s'est produite lors de la suppression de la catégorie");
@@ -78,12 +78,12 @@ const DeleteCategory = () => {
           <h2 className="category-heading">Supprimer une catégorie</h2>
           <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="id">ID de la catégorie :</label>
+              <label htmlFor="categoryId">ID de la catégorie :</label>
               <input
                 type="text"
-                id="id"
-                value={id}
-                onChange={(event) => setId(event.target.value)}
+                id="categoryId"
+                value={categoryId}
+                onChange={(event) => setCategoryId(event.target.value)}
                 required
               />
             </div>

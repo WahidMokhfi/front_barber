@@ -214,6 +214,10 @@ body {
   color: #666;
   margin-bottom: 10px;
 }
+.admin-delete-service-container label {
+  margin-bottom: 10px;
+  color: #000; /* Ajoutez cette ligne pour définir la couleur du texte en noir */
+}
 
   
   

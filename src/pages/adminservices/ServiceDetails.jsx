@@ -52,21 +52,22 @@ const ServiceDetails = () => {
   return (
     <>
       <Header />
-      <div className="service-details">
-        <h2>Détails du service</h2>
-        <div>
-          <h3>{service.service_name}</h3>
-          <p>{service.description}</p>
-          <p>Prix : {service.price}</p>
-          <p>Nom de la catégorie : {category.category_name}</p>
-          <p>ID de la catégorie : {category.id}</p>
-        </div>
-      </div>
+<div className="service-details">
+    <h2 className="service-details__title">Détails du service</h2>
+      <div className="service-details__content">
+        <h3 className="service-details__service-name">{service.service_name}</h3>
+        <p className="service-details__description">{service.description}</p>
+        <p className="service-details__price">Prix : {service.price}</p>
+        <p className="service-details__category-name">Nom de la catégorie : {category.category_name}</p>
+      <p className="service-details__category-id">ID de la catégorie : {category.id}</p>
+    </div>
+</div>
     </>
   );
 };
 
 export default ServiceDetails;
+
 
 
 

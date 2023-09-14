@@ -1,4 +1,4 @@
-/* .user-details {
+.user-details {
     margin: 0;
     padding: 0;
     background-image: url('http://localhost:3000/img/outilsBarber.jpg');
@@ -14,13 +14,13 @@
   .user-details h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: black;
+    color: white;
     font-size: 24px;
   }
   
   .user-details > div {
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color:white;
     backdrop-filter: blur(10px);
     border-radius: 10px;
     margin-top: 20px;
@@ -33,5 +33,5 @@
   
   .user-details p {
     font-size: 14px;
-  } */
+  }
   

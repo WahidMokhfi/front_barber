@@ -58,7 +58,7 @@ const ServicesList = () => {
                   className={`services-list-service-link ${selectedService === service ? "active" : ""}`}
                   onClick={() => handleServiceClick(service)}
                 >
-                  {service.service_name}
+                  <span className="service-name">{service.service_name}</span>
                 </button>
                 {selectedService === service && (
                   <div className="services-list-selected-service">
@@ -103,6 +103,7 @@ const ServicesList = () => {
 };
 
 export default ServicesList;
+
 
 
 

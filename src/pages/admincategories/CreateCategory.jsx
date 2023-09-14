@@ -1,3 +1,4 @@
+// createcategory.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -27,7 +28,7 @@ const CreateCategory = () => {
       });
 
       if (response.ok) {
-        toast.success("La catégorie a été créée avec succès");
+        toast.success(`La "${categoryName}" a été créée avec succès`);
         navigate("/admin/categories");
       } else {
         toast.error("Une erreur s'est produite lors de la création de la catégorie");
@@ -49,7 +50,7 @@ const CreateCategory = () => {
         <div className="admin-create-category-container">
           <h2 className="category-heading">Créer une catégorie</h2>
           <form onSubmit={handleSubmit}>
-            <div>
+            <div className="form-group">
               <label htmlFor="categoryName">Nom de catégorie :</label>
               <input
                 type="text"
@@ -59,7 +60,7 @@ const CreateCategory = () => {
                 required
               />
             </div>
-            <div>
+            <div className="form-group">
               <label htmlFor="description">Description :</label>
               <textarea
                 id="description"
@@ -68,7 +69,9 @@ const CreateCategory = () => {
                 required
               />
             </div>
-            <button type="submit" className="create-button">Créer</button>
+            <button type="submit" className="create-button">
+              Créer
+            </button>
             <button type="button" className="cancel-button" onClick={handleCancel}>
               Annuler
             </button>
@@ -80,6 +83,10 @@ const CreateCategory = () => {
 };
 
 export default CreateCategory;
+
+
+
+
 
 
 
